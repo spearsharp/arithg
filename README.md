@@ -1,6 +1,6 @@
 # arithg
 
-A new Flutter project.
+A new Flutter project. - an arithmatic game with basic flutter features.
 
 ## Getting Started
 
