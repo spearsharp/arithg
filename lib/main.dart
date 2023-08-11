@@ -54,9 +54,11 @@ class _HomePageState extends State<HomePage> {
         ),
         body: Stack(
           children: [
-            Game(
-                inputController: _inputController,
-                scoreController: _scoreController),
+            ...List.generate(3, (index) {
+              return Game(
+                  inputController: _inputController,
+                  scoreController: _scoreController);
+            }),
             KeyPad(inputController: _inputController)
           ],
         ));
