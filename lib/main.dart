@@ -1,184 +1,203 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'dart:async';
+import 'dart:math';
 import 'services/screeenAdapter.dart';
 
 void main() {
-  runApp(MyApp()
-      // ScreenUtilInit(
-      //   designSize: const Size(1080, 2400), //设计稿的宽度和高度 px
-      //   minTextAdapt: true,
-      //   splitScreenMode: true,
-      //   builder: (context, child) {
-      //     return GetMaterialApp(
-      //       debugShowCheckedModeBanner: false,
-      //       title: "Application",
-      //       //配置主题
-      //       theme: ThemeData(primarySwatch: Colors.grey),
-      //       initialRoute: AppPages.INITIAL,
-      //       //配置ios动画
-      //       defaultTransition: Transition.rightToLeft,
-      //       getPages: AppPages.routes,
-      //     );
-      //   })
-      );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      title: "Flatter Game",
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: const HomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _HomePageState extends State<HomePage> {
+  final StreamController<int> _inputController =
+      StreamController.broadcast(); //multiple listener
+  final StreamController<int> _scoreController = StreamController.broadcast();
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  int score = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: StreamBuilder(
+              stream: _scoreController.stream,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  score += snapshot.data as int;
+                  return Text("您的得分： ${score}");
+                }
+                if (snapshot.hasError) {
+                  return Text("Error: ${snapshot.error}");
+                }
+                return const Text("监听中..");
+              }),
+        ),
+        body: Stack(
+          children: [
+            Game(
+                inputController: _inputController,
+                scoreController: _scoreController),
+            KeyPad(inputController: _inputController)
+          ],
+        ));
+  }
+}
+
+//Arithmatic game section
+class Game extends StatefulWidget {
+  final StreamController<int> inputController;
+  final StreamController<int> scoreController;
+  const Game(
+      {super.key,
+      required this.inputController,
+      required this.scoreController});
+  @override
+  State<Game> createState() => _GameState();
+}
+
+class _GameState extends State<Game> with SingleTickerProviderStateMixin {
+  late double x;
+  late int a, b, c, d, e, f, g;
+  late Color color;
+  late bool t;
+  String m = '()';
+  String n = '/';
+  late AnimationController _animationController;
+
+//game restart
+  reset() {
+    t = true;
+    d = Random().nextInt(5) + 1;
+    e = Random().nextInt(5);
+    x = Random().nextDouble() * 320;
+    color = Colors.primaries[Random().nextInt(Colors.primaries.length)];
   }
 
-  void _decrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter--;
+  //score update
+  score(t) {
+    print("t: ${t}");
+    if (t) {
+      print("true: ${t}");
+      widget.scoreController.add(3);
+    } else {
+      print("false: ${t}");
+      print(t);
+      widget.scoreController.add(-1);
+    }
+  }
+
+  @override
+  void initState() {
+    a = Random().nextInt(99);
+    b = Random().nextInt(99);
+    c = Random().nextInt(9);
+    super.initState();
+
+    reset(); //first round to play
+    // TODO: implement initState
+    _animationController = AnimationController(
+        vsync: this,
+        duration: Duration(milliseconds: Random().nextInt(5000) + 5000));
+    _animationController.forward();
+    _animationController.addStatusListener((status) {
+      //listening KeyPad press
+
+      if (status == AnimationStatus.completed) {
+        t = false;
+        score(t);
+        // widget.scoreController.add(-1);
+        reset();
+        _animationController.forward(from: 0.0);
+      }
+      //get inputController data,and monitorring
+      widget.inputController.stream.listen((event) {
+        int total = d + e;
+        print("d+e : ${total}");
+        print("event: ${event}");
+        if (total == event) {
+          t = true;
+          score(t);
+          // widget.scoreController.add(3);
+          reset();
+          _animationController.forward(from: 0.0);
+        }
+      });
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-        appBar: AppBar(
-          // TRY THIS: Try changing the color here to a specific color (to
-          // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-          // change color while the other colors stay the same.
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
-          title: Text(widget.title),
-        ),
-        body: Center(
-          // Center is a layout widget. It takes a single child and positions it
-          // in the middle of the parent.
-          child: Column(
-            // Column is also a layout widget. It takes a list of children and
-            // arranges them vertically. By default, it sizes itself to fit its
-            // children horizontally, and tries to be as tall as its parent.
-            //
-            // Column has various properties to control how it sizes itself and
-            // how it positions its children. Here we use mainAxisAlignment to
-            // center the children vertically; the main axis here is the vertical
-            // axis because Columns are vertical (the cross axis would be
-            // horizontal).
-            //
-            // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-            // action in the IDE, or press "p" in the console), to see the
-            // wireframe for each widget.
+    MediaQueryData queryData = MediaQuery.of(context);
+    double screenHeight = queryData.size.height;
+    double screenWidth = queryData.size.width;
+    return AnimatedBuilder(
+        animation: _animationController,
+        builder: (context, child) {
+          return Positioned(
+              top: Tween(begin: -10.00, end: 500.00)
+                  .animate(_animationController)
+                  .value,
+              left: x,
+              child: Container(
+                  padding: const EdgeInsets.fromLTRB(8, 5, 8, 5),
+                  decoration: BoxDecoration(
+                      color: color, borderRadius: BorderRadius.circular(18)),
+                  child:
+                      // ignore: unnecessary_brace_in_string_interps
+                      Text("$d+$e=?", style: const TextStyle(fontSize: 18))));
+        });
+  }
+}
 
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                'You have pushed the button this many times:',
-              ),
-              Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-            ],
-            // floatingActionButton: Container(
-            //   alignment: Alignment.center,
-            //   // color: Color.fromARGB(255, 210, 63, 53),
-            //   color: Colors.transparent,
-            //   child: Row(
-            //     crossAxisAlignment: CrossAxisAlignment.center,
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: [
-            //       Container(
-            //         padding: const EdgeInsets.all(26),
-            //         child: FloatingActionButton(
-            //           onPressed: _incrementCounter,
-            //           tooltip: 'Increment',
-            //           child: const Icon(Icons.add),
-            //         ),
-            //       ), // This trailing comma makes auto-formatting nicer for build methods.],)
-            //       Container(
-            //           padding: const EdgeInsets.all(26),
-            //           child: FloatingActionButton(
-            //             onPressed: _decrementCounter,
-            //             tooltip: '_Decrement',
-            //             child: const Icon(Icons.remove),
-            //           )) // This trailing comma makes auto-formatting nicer for build methods.
-            //     ],
-            //   ),
-            // )
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.black26,
-          onPressed: _incrementCounter,
-          tooltip: 'Increment',
-          child: const Icon(Icons.add),
-        ) // This trailing comma makes auto-formatting nicer for build methods.
-        );
+class KeyPad extends StatelessWidget {
+  final StreamController<int> inputController;
+  const KeyPad({super.key, required this.inputController});
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+          // color: Colors.red,
+          child: GridView.count(
+        shrinkWrap: true,
+        crossAxisCount: 3,
+        childAspectRatio: 5 / 2,
+        children: List.generate(9, (index) {
+          return TextButton(
+              style: ButtonStyle(
+                  shape:
+                      MaterialStateProperty.all(const RoundedRectangleBorder()),
+                  backgroundColor:
+                      MaterialStateProperty.all(Colors.primaries[index][300]),
+                  foregroundColor: MaterialStateProperty.all(Colors.black45)),
+              onPressed: () {
+                inputController.add(index + 1);
+              },
+              child: Text("${index + 1}",
+                  style: Theme.of(context).textTheme.headlineMedium));
+        }),
+      )),
+    );
   }
 }
