@@ -1,7 +1,10 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math';
 import 'services/screeenAdapter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,8 +34,20 @@ class _HomePageState extends State<HomePage> {
   final StreamController<int> _inputController =
       StreamController.broadcast(); //multiple listener
   final StreamController<int> _scoreController = StreamController.broadcast();
+  final StreamController<int> _levelController = StreamController.broadcast();
 
   int score = 0;
+  int level = 1;
+  late int clevel;
+  _saveData() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt("level", level);
+  }
+
+  _getData() async {
+    final prefs = await SharedPreferences.getInstance();
+    clevel = prefs.getInt("level")!;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,20 +59,34 @@ class _HomePageState extends State<HomePage> {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   score += snapshot.data as int;
-                  return Text("您的得分： ${score}");
+                  level = (score ~/ 10);
+                  _saveData();
                 }
                 if (snapshot.hasError) {
                   return Text("Error: ${snapshot.error}");
                 }
-                return const Text("监听中..");
+                return Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Wrap(
+                      alignment: WrapAlignment.spaceAround,
+                      children: [
+                        Text("您的得分： $score"),
+                        Text(
+                          "关卡： $level",
+                        )
+                      ],
+                    ));
               }),
         ),
         body: Stack(
           children: [
-            ...List.generate(3, (index) {
+            clevel = _getData(),
+            Text("Children level: $clevel"),
+            ...List.generate(clevel, (index) {
               return Game(
                   inputController: _inputController,
-                  scoreController: _scoreController);
+                  scoreController: _scoreController,
+                  levelController: _levelController);
             }),
             KeyPad(inputController: _inputController)
           ],
@@ -65,23 +94,44 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+Future<void> saveData(int level) async {
+  final prefs = await SharedPreferences.getInstance();
+  prefs.setInt("CurrentLevel", level);
+}
+
+Future<int?> fetchData() async {
+  final prefs = await SharedPreferences.getInstance();
+  Future<int?> clevel;
+  // ignore: unrelated_type_equality_checks
+  if (prefs.getInt("CurrentLevel") == "") {
+    clevel = 0 as Future<int?>;
+    print("Currentlevel is  null: $clevel");
+  } else {
+    clevel = prefs.getInt("CurrentLevel") as Future<int?>;
+    print("Currentlevel is not null: $clevel");
+  }
+  return clevel;
+}
+
 //Arithmatic game section
 class Game extends StatefulWidget {
   final StreamController<int> inputController;
   final StreamController<int> scoreController;
+  final StreamController<int> levelController;
   const Game(
       {super.key,
       required this.inputController,
-      required this.scoreController});
+      required this.scoreController,
+      required this.levelController});
   @override
   State<Game> createState() => _GameState();
 }
 
 class _GameState extends State<Game> with SingleTickerProviderStateMixin {
   late double x;
-  late int a, b, c, d, e, f, g;
+  late int a, b, c, d, e, f, g, netscore, levelevent;
   late Color color;
-  late bool t;
+  late bool t, l;
   String m = '()';
   String n = '/';
   late AnimationController _animationController;
@@ -97,22 +147,40 @@ class _GameState extends State<Game> with SingleTickerProviderStateMixin {
 
   //score update
   score(t) {
-    print("t: ${t}");
     if (t) {
-      print("true: ${t}");
       widget.scoreController.add(3);
+      netscore = netscore + 3;
+      if (netscore > 10) {
+        l = true;
+        netscore = 0;
+      }
     } else {
-      print("false: ${t}");
-      print(t);
       widget.scoreController.add(-1);
+      netscore = netscore - 1;
+      if (netscore < 0) {
+        l = false;
+        netscore = 0;
+      }
     }
   }
+
+  level(bool l) {
+    // print("levelevent : ${levelevent}");
+    if (l == true) {
+      widget.levelController.add(1);
+    } else if (l == false && levelevent > 1) {
+      widget.levelController.add(-1);
+    }
+  }
+
+//level up and awearded
 
   @override
   void initState() {
     a = Random().nextInt(99);
     b = Random().nextInt(99);
     c = Random().nextInt(9);
+    netscore = 0;
     super.initState();
 
     reset(); //first round to play
@@ -127,19 +195,17 @@ class _GameState extends State<Game> with SingleTickerProviderStateMixin {
       if (status == AnimationStatus.completed) {
         t = false;
         score(t);
-        // widget.scoreController.add(-1);
         reset();
         _animationController.forward(from: 0.0);
       }
       //get inputController data,and monitorring
       widget.inputController.stream.listen((event) {
         int total = d + e;
-        print("d+e : ${total}");
-        print("event: ${event}");
         if (total == event) {
           t = true;
           score(t);
-          // widget.scoreController.add(3);
+          // level levelup or leveldown check
+          level(l);
           reset();
           _animationController.forward(from: 0.0);
         }
@@ -171,6 +237,7 @@ class _GameState extends State<Game> with SingleTickerProviderStateMixin {
   }
 }
 
+//keypad monitorring
 class KeyPad extends StatelessWidget {
   final StreamController<int> inputController;
   const KeyPad({super.key, required this.inputController});
