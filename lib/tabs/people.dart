@@ -10,6 +10,26 @@ class People extends StatefulWidget {
 class _PeopleState extends State<People> {
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("People page"));
+    return Scaffold(
+        body: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/register");
+              },
+              child: const Text("注册用户")),
+          const SizedBox(
+            height: 20,
+          ),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/login");
+              },
+              child: const Text("登陆"))
+        ],
+      ),
+    ));
   }
 }

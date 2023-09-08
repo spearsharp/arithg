@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../utils/keepAliveWrapper.dart';
+import '../../utils/keepAliveWrapper.dart';
 import '../tabs/home/homeTabPage.dart';
 
 class Home extends StatefulWidget {
@@ -13,7 +13,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   late TabController _tabController;
   @override
   void dispose() {
-    //TODO: implement dispose
+    //TODO: implement dispose, close tabcontroller,
     super.dispose();
     _tabController.dispose();
   }
@@ -37,7 +37,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           preferredSize: Size.fromHeight(30.0),
           child: AppBar(
               backgroundColor: Color.fromARGB(255, 253, 247, 247),
-              elevation: 1,
+              elevation: 0.1,
               title: SizedBox(
                   height: 30,
                   child: TabBar(
@@ -76,7 +76,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     ],
                   )))),
       body: TabBarView(controller: _tabController, children: [
-        const KeepAliveWrapper(child: HomeTabpage()),
+        const KeepAliveWrapper(child: HomeTabpage()), // HomeTabPage single page
         KeepAliveWrapper(
             child: ListView(
           children: const [

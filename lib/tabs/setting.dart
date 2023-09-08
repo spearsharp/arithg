@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import '../utils/tabs.dart';
+import '../pages/form.dart';
+import '../pages/searchPage.dart';
+import '../pages/news.dart';
 
 class Setting extends StatefulWidget {
   const Setting({super.key});
@@ -8,8 +12,11 @@ class Setting extends StatefulWidget {
 }
 
 class _SettingState extends State<Setting> {
+  var num = "1";
+  String title = "test";
+  String subtitle = "test subtitle";
   @override
   Widget build(BuildContext context) {
-    return Text("Setting Page");
+    return const Center(child: Text("Setting page"));
   }
 }
