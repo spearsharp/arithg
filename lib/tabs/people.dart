@@ -17,7 +17,8 @@ class _PeopleState extends State<People> {
         children: [
           ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, "/register");
+                Navigator.pushNamed(context, "/registerFirst",
+                    arguments: {"title": "注册页面"});
               },
               child: const Text("注册用户")),
           const SizedBox(
@@ -25,7 +26,8 @@ class _PeopleState extends State<People> {
           ),
           ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, "/login");
+                Navigator.pushNamed(context, "/login",
+                    arguments: {"title": "登陆"});
               },
               child: const Text("登陆"))
         ],
