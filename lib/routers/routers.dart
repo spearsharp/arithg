@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart'; // need to update xcode widget first
 import 'package:get/route_manager.dart';
 import 'package:get/utils.dart';
+import '../instances/icons.dart';
 import '../pages/form.dart';
 import '../pages/searchPage.dart';
 import '../pages/search.dart';
@@ -19,6 +20,11 @@ final Map<String, Function> routes = {
   "/": (context, {arguments}) => const BottomTabs(),
   // "/hometabpage": (contxt, index) => BottomTabs(index: index),
   "/home": (context) => const HomeTabpage(),
+  "/iconsInstances": (context, {arguments}) =>
+      IconsInstances(arguments: arguments),
+  // "/home": (context) => const HomeTabpage(),
+  // "/home": (context) => const HomeTabpage(),
+  // "/home": (context) => const HomeTabpage(),
   "/form": (context, {arguments}) => FormPage(arguments: arguments),
   "/news": (context, {arguments}) => NewsPage(arguments: arguments),
   "/login": (context, {arguments}) => LoginPage(arguments: arguments),

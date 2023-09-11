@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import '../utils/tabs.dart';
 import '../pages/form.dart';
@@ -18,6 +20,12 @@ class _SettingState extends State<Setting> {
   var num = "1";
   String title = "test";
   String subtitle = "test subtitle";
+  final double scrnwidth = window.physicalSize.width;
+  final double scrnheight = window.physicalSize.height;
+  print(scrnheight) {
+    // TODO: implement print
+    throw UnimplementedError();
+  }
 
   void _alertDialog() async {
     var result = await showDialog(
@@ -89,7 +97,7 @@ class _SettingState extends State<Setting> {
         context: context,
         builder: (context) {
           return SizedBox(
-              height: 220,
+              height: scrnheight * 0.2,
               child: Column(
                 children: <Widget>[
                   ListTile(
@@ -130,7 +138,9 @@ class _SettingState extends State<Setting> {
 
 // void _modelSelectBottomSheet() async {
 //   var result = await showModalBottomSheet(context: context, builder: (context) {
-//     return Container(child: Column(children: [Row(children: [const Text("颜色："),IconButton(onPressed: onPressed, icon: Icons.ac_unit_sharp)],)],),);
+//     return Container(child: Column(children: [Row(children: [const Text("颜色："),IconButton(onPressed: setState(() {
+
+//     });, icon: Icon(Icons.abc_outlined))],)],),);
 //   }))
 // }
   @override
