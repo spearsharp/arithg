@@ -1,4 +1,3 @@
-import 'package:arithg/main_statefultest1.dart';
 import 'package:arithg/utils/tabs.dart';
 import 'package:flutter/material.dart';
 
@@ -60,7 +59,7 @@ class _RegisterThirdPageState extends State<RegisterThirdPage> {
             Navigator.of(context).pushAndRemoveUntil(
                 // 无法返回
                 MaterialPageRoute(
-                    builder: (BuildContext context) => const MyApp()),
+                    builder: (BuildContext context) => const BottomTabs()),
                 (route) => false);
           },
           child: const Text("回到根路由")),

@@ -59,9 +59,13 @@ class _CategoryState extends State<Category> {
               // },
               onPressed: () {
                 //route to Formpage
-                Navigator.pushNamed(context, "/news");
+                Navigator.pushNamed(context, "/news", arguments: {
+                  num: num,
+                  title: title,
+                  subtitle: subtitle,
+                });
               },
-              child: const Text("命名路又跳转"))
+              child: const Text("命名路由跳转"))
         ],
       ),
     );
