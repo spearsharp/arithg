@@ -151,30 +151,29 @@ class _ListViewPageState extends State<ListViewPage>
           ),
           SizedBox(
             height: 80,
-            child: ListView(
-              children: const <Widget>[
-                ListTile(title: Text("他是一个标题")),
-                ListTile(title: Text("他是一个标题")),
-                ListTile(title: Text("他是一个标题")),
-                ListTile(title: Text("他是一个标题")),
-                ListTile(title: Text("他是一个标题")),
-                ListTile(title: Text("他是一个标题")),
-                ListTile(title: Text("我是一个标题")),
-                ListTile(title: Text("他是一个标题")),
-                ListTile(title: Text("他是一个标题")),
-                ListTile(title: Text("他是一个标题")),
-                ListTile(title: Text("他是一个标题")),
-                ListTile(title: Text("他是一个标题")),
-                ListTile(title: Text("他是一个标题")),
-                ListTile(title: Text("他是一个标题")),
-                ListTile(title: Text("他是一个标题")),
-                ListTile(title: Text("他是一个标题")),
-                ListTile(title: Text("他是一个标题")),
-                ListTile(title: Text("他是n个标题")),
-                ListTile(title: Text("他是N个标题")),
-              ],
-            ),
+            child: ListPage(),
           )
         ]));
+  }
+}
+
+//dynamic listView via ListView.builder
+class ListPage extends StatelessWidget {
+  List list = [];
+  ListPage({Key? key}) : super(key: key) {
+    for (var i = 0; i < 10; i++) {
+      list.add("我是一个列表--$i");
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        itemCount: list.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text("${list[index]}"),
+          );
+        });
   }
 }
