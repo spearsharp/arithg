@@ -49,23 +49,22 @@ class _ListViewPageState extends State<ListViewPage>
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(20.0),
+          preferredSize: const Size.fromHeight(50.0),
           child: AppBar(
-              backgroundColor: Color.fromARGB(255, 253, 247, 247),
+              backgroundColor: Color.fromARGB(255, 202, 144, 144),
               elevation: 0.1,
               title: SizedBox(
                   child: TabBar(
                 isScrollable: true,
                 indicatorColor: Colors.red,
-                labelColor: Colors.red,
-                unselectedLabelColor: Colors.green,
+                unselectedLabelColor: Color.fromARGB(255, 18, 23, 18),
                 indicatorSize: TabBarIndicatorSize.label,
                 controller: _tabController,
                 tabs: const [
                   Tab(child: (Text("静态list"))),
                   Tab(child: (Text("动态组建"))),
                   Tab(child: (Text("LVBlder"))),
-                  Tab(child: (Text("动态LVBlder"))),
+                  Tab(child: (Text("动态LVBlder")))
                 ],
               ))),
         ),
@@ -161,7 +160,7 @@ class _ListViewPageState extends State<ListViewPage>
 class ListPage extends StatelessWidget {
   List list = [];
   ListPage({Key? key}) : super(key: key) {
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 100; i++) {
       list.add("我是一个列表--$i");
     }
   }
