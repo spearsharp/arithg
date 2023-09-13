@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../res/listData.dart';
 
 class ListViewPage extends StatefulWidget {
   final Map arguments;
@@ -13,6 +14,7 @@ class _ListViewPageState extends State<ListViewPage>
   //tabbar controller
   late TabController _tabController;
   List<Widget> _initListView() {
+    //直接定义List 数组widget 循环完，返回List[]
     List<Widget> list = [];
     for (var i = 0; i < 10; i++) {
       list.add(const ListTile(
@@ -20,6 +22,21 @@ class _ListViewPageState extends State<ListViewPage>
       ));
     }
     return list;
+  }
+
+  List<Widget> _initListViewData() {
+    var tmplist = listData.map(
+      // (value) => ListTile(title: Text(value["title"])),
+      (value) => Container(
+          child: Column(
+        children: [
+          Image.network(value["imageUrl"]),
+          Text(value["title"]),
+          Text(value["author"]),
+        ],
+      )),
+    );
+    return tmplist.toList();
   }
 
   //dispose _tabContorller
@@ -145,12 +162,13 @@ class _ListViewPageState extends State<ListViewPage>
           SizedBox(
             height: 80,
             child: ListView(
-              children: _initListView(),
+              // children: _initListView(), // 直接引用List循环建立完毕的数组
+              children: _initListViewData(), // 直接引用ListData数据循环建立完毕的数组
             ),
           ),
           SizedBox(
             height: 80,
-            child: ListPage(),
+            child: ListPage(), //循环构建List[] 中的ListTile widget
           )
         ]));
   }
@@ -160,6 +178,7 @@ class _ListViewPageState extends State<ListViewPage>
 class ListPage extends StatelessWidget {
   List list = [];
   ListPage({Key? key}) : super(key: key) {
+    // pending on learn key herical and widget builder
     for (var i = 0; i < 100; i++) {
       list.add("我是一个列表--$i");
     }
@@ -168,6 +187,7 @@ class ListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+        // 返回一个widget extend 组件 ，接以上List 顺序执行 for循环 每次super key一下 widget build一个 return ListTile
         itemCount: list.length,
         itemBuilder: (context, index) {
           return ListTile(
