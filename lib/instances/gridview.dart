@@ -87,8 +87,8 @@ class _GridViewPageState extends State<GridViewPage>
             child: GridView.count(
               mainAxisSpacing: 3.0,
               crossAxisSpacing: 3.0,
-              crossAxisCount: 2,
-              childAspectRatio: 1.0,
+              crossAxisCount: 3,
+              childAspectRatio: 0.8,
               children: _gridViewData(),
             ),
           ),
