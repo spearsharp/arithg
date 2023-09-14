@@ -76,11 +76,87 @@ class _InfraViewPageState extends State<InfraViewPage>
 //padding feature
 class _paddingF extends StatelessWidget {
   const _paddingF({super.key});
+  List<Widget> grideViewList() {
+    List<Widget> tmplist = [];
+    for (var i = 0; i < 20; i++) {
+      tmplist.add(
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child: Image.network(
+            "https://www.itying.com/images/flutter/1.png",
+            fit: BoxFit.cover,
+          ),
+        ),
+      );
+    }
+    return tmplist;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        alignment: Alignment.center, child: const Text("padding page"));
+    return GridView.count(
+      crossAxisCount: 2,
+      childAspectRatio: 1,
+      children: grideViewList(),
+      // [
+      //   Padding(
+      //     padding: const EdgeInsets.all(3),
+      //     child: Image.network(
+      //       "https://www.itying.com/images/flutter/1.png",
+      //       fit: BoxFit.cover,
+      //     ),
+      //   ),
+      //   Padding(
+      //     padding: const EdgeInsets.all(3),
+      //     child: Image.network(
+      //       "https://www.itying.com/images/flutter/1.png",
+      //       fit: BoxFit.cover,
+      //     ),
+      //   ),
+      //   Padding(
+      //     padding: const EdgeInsets.all(3),
+      //     child: Image.network(
+      //       "https://www.itying.com/images/flutter/1.png",
+      //       fit: BoxFit.cover,
+      //     ),
+      //   ),
+      //   Padding(
+      //     padding: const EdgeInsets.all(3),
+      //     child: Image.network(
+      //       "https://www.itying.com/images/flutter/1.png",
+      //       fit: BoxFit.cover,
+      //     ),
+      //   ),
+      //   Padding(
+      //     padding: const EdgeInsets.all(3),
+      //     child: Image.network(
+      //       "https://www.itying.com/images/flutter/1.png",
+      //       fit: BoxFit.cover,
+      //     ),
+      //   ),
+      //   Padding(
+      //     padding: const EdgeInsets.all(3),
+      //     child: Image.network(
+      //       "https://www.itying.com/images/flutter/1.png",
+      //       fit: BoxFit.cover,
+      //     ),
+      //   ),
+      //   Padding(
+      //     padding: const EdgeInsets.all(3),
+      //     child: Image.network(
+      //       "https://www.itying.com/images/flutter/1.png",
+      //       fit: BoxFit.cover,
+      //     ),
+      //   ),
+      //   Padding(
+      //     padding: const EdgeInsets.all(3),
+      //     child: Image.network(
+      //       "https://www.itying.com/images/flutter/1.png",
+      //       fit: BoxFit.cover,
+      //     ),
+      //   ),
+      // ],
+    );
   }
 }
 
