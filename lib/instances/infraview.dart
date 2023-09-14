@@ -239,29 +239,38 @@ class _flexF extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flex(
-      mainAxisAlignment: MainAxisAlignment.center,
-      direction: Axis.horizontal,
-      children: [
-        Expanded(
-            flex: 1,
-            child: IconConainters(Icons.home, // icon 透传
-                size: 30,
-                color: Colors.black12)),
-        // const SizedBox(  // 在expand当中加sizedbox无效
-        //   height: 10,
-        // ),
-        Expanded(
-            flex: 3,
-            child: IconConainters(Icons.search, // icon 透传
-                size: 30,
-                color: Colors.red)),
-        Expanded(
-            flex: 6,
-            child: IconConainters(Icons.email, // icon 透传
-                size: 30,
-                color: Colors.blue)),
-      ],
+    return Container(
+      height: double.infinity,
+      width: double.infinity,
+      child: Column(
+        children: [
+          Flex(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            direction: Axis.horizontal,
+            children: [
+              Expanded(
+                  flex: 1,
+                  child: IconConainters(Icons.home, // icon 透传
+                      size: 30,
+                      color: Colors.black12)),
+              // const SizedBox(  // 在expand当中加sizedbox无效
+              //   height: 10,
+              // ),
+              Expanded(
+                  flex: 3,
+                  child: IconConainters(Icons.search, // icon 透传
+                      size: 30,
+                      color: Colors.red)),
+              Expanded(
+                  flex: 6,
+                  child: IconConainters(Icons.email, // icon 透传
+                      size: 30,
+                      color: Colors.blue)),
+            ],
+          ),
+          //2nd Plugin
+        ],
+      ),
     );
   }
 }
