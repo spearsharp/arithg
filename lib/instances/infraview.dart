@@ -92,7 +92,7 @@ class IconConainters extends StatelessWidget {
       child: Center(
         child: Icon(
           icon,
-          color: this.color,
+          color: Colors.black87,
           size: this.size,
         ),
       ),
@@ -193,9 +193,20 @@ class _rowF extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconConainters(Icons.home, // icon 透传
-        size: 30,
-        color: Colors.black12);
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          IconConainters(Icons.home, // icon 透传
+              size: 30,
+              color: Colors.black12), // 非常量参数无法传值
+          IconConainters(Icons.people, // icon 透传
+              size: 30,
+              color: Colors.pink),
+          IconConainters(Icons.phone, // icon 透传
+              size: 30,
+              color: Colors.blue.shade400),
+        ]);
   }
 }
 
@@ -205,19 +216,53 @@ class _columeF extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        alignment: Alignment.center, child: const Text("colume page"));
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          IconConainters(Icons.home, // icon 透传
+              size: 30,
+              color: Colors.black12), // 非常量参数无法传值
+          IconConainters(Icons.people, // icon 透传
+              size: 30,
+              color: Colors.pink),
+          IconConainters(Icons.phone, // icon 透传
+              size: 30,
+              color: Colors.blue.shade400),
+        ]);
   }
 }
 
-//flex feature
+//flex feature, flex 只能放在row，column，flex里才能用expanded
 class _flexF extends StatelessWidget {
   const _flexF({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        alignment: Alignment.center, child: const Text("flex page"));
+    return Flex(
+      mainAxisAlignment: MainAxisAlignment.center,
+      direction: Axis.horizontal,
+      children: [
+        Expanded(
+            flex: 1,
+            child: IconConainters(Icons.home, // icon 透传
+                size: 30,
+                color: Colors.black12)),
+        // const SizedBox(  // 在expand当中加sizedbox无效
+        //   height: 10,
+        // ),
+        Expanded(
+            flex: 3,
+            child: IconConainters(Icons.search, // icon 透传
+                size: 30,
+                color: Colors.red)),
+        Expanded(
+            flex: 6,
+            child: IconConainters(Icons.email, // icon 透传
+                size: 30,
+                color: Colors.blue)),
+      ],
+    );
   }
 }
 
