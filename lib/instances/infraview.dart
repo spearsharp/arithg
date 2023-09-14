@@ -73,6 +73,33 @@ class _InfraViewPageState extends State<InfraViewPage>
   }
 }
 
+//icon 组件透传icons. 参数size color
+class IconConainters extends StatelessWidget {
+  Color color;
+  double size;
+  IconData icon;
+
+  IconConainters(this.icon, {Key? key, required this.color, required this.size})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // decoration: BoxDecoration(),
+      height: 100,
+      width: 100,
+      color: color,
+      child: Center(
+        child: Icon(
+          icon,
+          color: this.color,
+          size: this.size,
+        ),
+      ),
+    );
+  }
+}
+
 //padding feature
 class _paddingF extends StatelessWidget {
   const _paddingF({super.key});
@@ -166,8 +193,9 @@ class _rowF extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        alignment: Alignment.center, child: const Text("row page"));
+    return IconConainters(Icons.home, // icon 透传
+        size: 30,
+        color: Colors.black12);
   }
 }
 
