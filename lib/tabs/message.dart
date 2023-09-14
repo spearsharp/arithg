@@ -1,3 +1,7 @@
+import 'dart:io';
+import 'dart:io';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:get/utils.dart';
@@ -16,6 +20,9 @@ class _MessageState extends State<Message> {
     // return const Scaffold(body: Center(child: const Text("中间中间标题")));
     return const Scaffold(
       body: Column(
+          // mainAxisAlignment: MainAxisAlignment.switch (expression) {    // pending to learn
+          //   pattern => value,
+          // },
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -32,11 +39,20 @@ class _MessageState extends State<Message> {
               height: 3,
             ),
             _iconInstances(),
+            SizedBox(
+              height: 3,
+            ),
+            _buildBottomTip(),
+            SizedBox(
+              height: 3,
+            ),
+            _container1()
           ]),
     );
   }
 }
 
+//方块栏
 class _tangle extends StatelessWidget {
   const _tangle({super.key});
 
@@ -63,42 +79,164 @@ class _tangle extends StatelessWidget {
           child: Container(
               alignment: Alignment.center,
               // padding: EdgeInsets.all(60.0),
-              child: const Text(
-                "你好",
-                style: TextStyle(fontSize: 20, color: Colors.white),
-                // textAlign: TextAlign.center,
+              child: Column(
+                children: [
+                  // Image.memory(bytes);
+                  Image.file(
+                      File("/Users/yaospear/Downloads/WechatIMG26215.jpg")),
+                  const Text(
+                    "你好",
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                    // textAlign: TextAlign.center,
+                  )
+                ],
               )),
         ));
   }
 }
 
+//按钮,三个蓝色文本按钮区域
 class _buttonA extends StatelessWidget {
   const _buttonA({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Container(
-            // margin: const EdgeInsets.all(6),
+        child: Column(
+      children: [
+        //container1  listView组件
+        Container(
+            alignment: Alignment.center,
+            margin: const EdgeInsets.all(1),
             // margin: const EdgeInsets.fromLTRB(0, 0, 0, 0), //离四周边距
             // padding: const EdgeInsets.fromLTRB(0, 0, 0, 0), //离四周边距
-            alignment: Alignment.center,
-            width: 100,
-            height: 30,
+            width: 70,
+            height: 18,
             decoration: BoxDecoration(
                 color: Colors.blue,
                 border: Border.all(color: Colors.black, width: 0.8),
                 borderRadius: BorderRadius.circular(20.0)),
             child: Container(
+                alignment: Alignment.center,
                 // padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                child: const Text("确定",
-                    style: TextStyle(
-                        fontSize: 15,
+                child: Text.rich(TextSpan(
+                    text: "列表样例",
+                    style: const TextStyle(
+                        fontSize: 11,
                         color: Colors.white,
-                        fontWeight: FontWeight.bold)))));
+                        fontWeight: FontWeight.bold),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.pushNamed(context, "/listView",
+                            arguments: {"title": "title"});
+                        print(
+                            '点击文字按钮触发ListView方法'); // click to realize the onTap function
+                      })))),
+        // container2,gridview 组件
+        Container(
+            // margin: const EdgeInsets.all(6),
+            // margin: const EdgeInsets.fromLTRB(0, 0, 0, 0), //离四周边距
+            // padding: const EdgeInsets.fromLTRB(0, 0, 0, 0), //离四周边距
+            alignment: Alignment.center,
+            margin: const EdgeInsets.all(1),
+            width: 100,
+            height: 18,
+            decoration: BoxDecoration(
+                color: Colors.blue,
+                border: Border.all(color: Colors.black, width: 0.8),
+                borderRadius: BorderRadius.circular(20.0)),
+            child: Container(
+                alignment: Alignment.center,
+                // padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child: Text.rich(TextSpan(
+                    text: "gridview样例",
+                    style: const TextStyle(
+                        fontSize: 11,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.pushNamed(context, "/gridView",
+                            arguments: {"title": "title"});
+                        print(
+                            '点击文字按钮触发方法'); // click to realize the onTap function
+                      })))),
+        // container3,Padding Row Colume Flex Stack Align Postioned Flutter AspectRation 组件
+        Container(
+            // margin: const EdgeInsets.all(6),
+            // margin: const EdgeInsets.fromLTRB(0, 0, 0, 0), //离四周边距
+            // padding: const EdgeInsets.fromLTRB(0, 0, 0, 0), //离四周边距
+            alignment: Alignment.center,
+            margin: const EdgeInsets.all(1),
+            width: 120,
+            height: 18,
+            decoration: BoxDecoration(
+                color: Colors.blue,
+                border: Border.all(color: Colors.black, width: 0.8),
+                borderRadius: BorderRadius.circular(20.0)),
+            child: Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child: Text.rich(TextSpan(
+                  // reference https://cloud.tencent.com/developer/article/1780059?areaSource=102001.11&traceId=0Gxphjl_iz8uIH4euljbb
+                  text: "Flutter布局组件样例",
+                  style: const TextStyle(
+                      fontSize: 11,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      Navigator.pushNamed(context, "/infraView",
+                          arguments: {"title": "title"});
+                      print(
+                          '点击文字按钮触发方法'); // click to realize the onTap function
+                    },
+                )))),
+      ],
+    ));
   }
 }
 
+//字体点击样式，样例组件
+class _buildBottomTip extends StatelessWidget {
+  const _buildBottomTip({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: Column(
+      children: [
+        IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, "/listview");
+              print("ok");
+            },
+            icon: const Icon(Icons.list_sharp)),
+        Text.rich(
+          TextSpan(
+            children: [
+              const TextSpan(
+                  // 文字链接
+                  text: "这是要显示的文字",
+                  style: TextStyle(color: Colors.red)),
+              TextSpan(
+                  text: "这是可以点击的文字",
+                  style: TextStyle(color: Colors.blue),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      Navigator.pushNamed(context, "/listView",
+                          arguments: {"title": "title"}); // listView 例子
+                      print('点击文字触发方法'); // click to realize the onTap function
+                    })
+            ],
+          ),
+        ),
+      ],
+    ));
+  }
+}
+
+//圆形图标组件
 class _clipOvalPic extends StatelessWidget {
   const _clipOvalPic({super.key});
 
@@ -114,6 +252,7 @@ class _clipOvalPic extends StatelessWidget {
   }
 }
 
+//图标组件
 class _iconInstances extends StatelessWidget {
   const _iconInstances({super.key});
 
@@ -133,5 +272,22 @@ class _iconInstances extends StatelessWidget {
             style: TextStyle(fontSize: 10, fontWeight: FontWeight.w800),
           )),
     );
+  }
+}
+
+//容器样式测试组件
+class _container1 extends StatelessWidget {
+  // gridview
+  const _container1({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: EdgeInsets.all(10),
+        padding: EdgeInsets.all(5),
+        color: Colors.amber,
+        child: const Text(
+          "容器样式测试1",
+          // style: TextStyle(fontSize: 15),
+        ));
   }
 }

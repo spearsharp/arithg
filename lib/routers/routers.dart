@@ -1,8 +1,12 @@
+import 'package:arithg/others/main_statefultest1.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart'; // need to update xcode widget first
 import 'package:get/route_manager.dart';
 import 'package:get/utils.dart';
 import '../instances/icons.dart';
+import '../instances/gridview.dart';
+import '../instances/infraview.dart';
+import '../instances/listview.dart';
 import '../pages/form.dart';
 import '../pages/searchPage.dart';
 import '../pages/search.dart';
@@ -22,8 +26,9 @@ final Map<String, Function> routes = {
   "/home": (context) => const HomeTabpage(),
   "/iconsInstances": (context, {arguments}) =>
       IconsInstances(arguments: arguments),
-  // "/home": (context) => const HomeTabpage(),
-  // "/home": (context) => const HomeTabpage(),
+  "/listView": (context, {arguments}) => ListViewPage(arguments: arguments),
+  "/gridView": (context, {arguments}) => GridViewPage(arguments: arguments),
+  "/infraView": (context, {arguments}) => InfraViewPage(arguments: arguments),
   // "/home": (context) => const HomeTabpage(),
   "/form": (context, {arguments}) => FormPage(arguments: arguments),
   "/news": (context, {arguments}) => NewsPage(arguments: arguments),
