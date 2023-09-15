@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/utils.dart';
 
 class InfraViewPage extends StatefulWidget {
   final Map arguments;
@@ -239,41 +241,90 @@ class _flexF extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: double.infinity,
-      width: double.infinity,
-      child: Column(
-        children: [
-          Flex(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            direction: Axis.horizontal,
-            children: [
-              Expanded(
-                  flex: 1,
-                  child: IconConainters(Icons.home, // icon 透传
-                      size: 30,
-                      color: Colors.black12)),
-              // const SizedBox(  // 在expand当中加sizedbox无效
-              //   height: 10,
-              // ),
-              Expanded(
-                  flex: 3,
-                  child: IconConainters(Icons.search, // icon 透传
-                      size: 30,
-                      color: Colors.red)),
-              Expanded(
-                  flex: 6,
-                  child: IconConainters(Icons.email, // icon 透传
-                      size: 30,
-                      color: Colors.blue)),
-            ],
-          ),
-          //2nd Plugin
-        ],
-      ),
+    return
+        //pending on anlysis and completely understand the layout infra composing again
+        // Container(
+        //   height: double.infinity,
+        //   width: double.infinity,
+        //   child: Column(
+        //     children: [
+        //       Flex(
+        //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+        //         direction: Axis.horizontal,
+        //         children: [
+        //           Expanded(
+        //               flex: 1,
+        //               child: IconConainters(Icons.home, // icon 透传
+        //                   size: 30,
+        //                   color: Colors.black12)),
+        //           // const SizedBox(  // 在expand当中加sizedbox无效
+        //           //   height: 10,ss
+        //           // ),
+        //           Expanded(
+        //               flex: 3,
+        //               child: IconConainters(Icons.search, // icon 透传
+        //                   size: 30,
+        //                   color: Colors.red)),
+        //           Expanded(
+        //               flex: 6,
+        //               child: IconConainters(Icons.email, // icon 透传
+        //                   size: 30,
+        //                   color: Colors.blue)),
+        //         ],
+        //       ),
+        //       const SizedBox(
+        //         height: 20,
+        //       ),
+        //       //2nd Plugin
+        ListView(
+      children: [
+        Container(
+          width: double.infinity,
+          height: 200.0,
+          color: Colors.black,
+        ),
+        Row(
+          children: [
+            Expanded(
+                flex: 2,
+                child: SizedBox(
+                  height: 180,
+                  child: Image.network(
+                      "https://www.itying.com/images/flutter/1.png"),
+                )),
+            Expanded(
+              flex: 1,
+              child: Container(
+                  height: 180,
+                  child: Container(
+                      padding: EdgeInsets.all(2),
+                      child: Column(
+                        children: [
+                          Expanded(
+                              flex: 1,
+                              child: Image.network(
+                                  "https://www.itying.com/images/flutter/2.png")),
+                          const SizedBox(
+                            height: 3,
+                          ),
+                          Expanded(
+                              flex: 1,
+                              child: Image.network(
+                                  "https://www.itying.com/images/flutter/3.png")),
+                        ],
+                      ))),
+            ),
+          ],
+        )
+      ],
     );
+    //     ],
+    //   ),
+    // );
   }
 }
+
+//stack sub page
 
 //stack feature
 class _stackF extends StatelessWidget {
@@ -281,8 +332,141 @@ class _stackF extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        alignment: Alignment.center, child: const Text("stack page"));
+    final scrnSize = MediaQuery.of(context as BuildContext).size;
+    final scrnWidth = scrnSize.width;
+    final scrnHeight = scrnSize.height;
+
+    return Stack(
+      children: [
+        ListView(
+          padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+          children: const [
+            Text("一级"),
+            Text("二级"),
+            Text("三级"),
+            Text("四级"),
+            Text("五级"),
+            Text("六级"),
+            Text("七级"),
+            Text("八级"),
+            Text("九级"),
+            Text("十级"),
+            Text("一级"),
+            Text("一级"),
+            Text("一级"),
+            Text("一级"),
+            Text("一级"),
+            Text("一级"),
+            Text("一级"),
+            Text("二十级"),
+            Text("一级"),
+            Text("一级"),
+            Text("一级"),
+            Text("一级"),
+            Text("最后级"),
+          ],
+        ),
+        Positioned(
+            width: scrnWidth,
+            height: 30,
+            child: Container(
+                alignment: Alignment.center,
+                color: Colors.white,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text.rich(TextSpan(
+                        style: TextStyle(color: Colors.red),
+                        text: "一级",
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            print("ff.....");
+                          })),
+                    Text.rich(TextSpan(
+                        style: TextStyle(color: Colors.red),
+                        text: "二级",
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            const subStackPageFirst();
+                          })),
+                    Text.rich(TextSpan(
+                        style: TextStyle(color: Colors.red),
+                        text: "三级",
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            print("thth.....");
+                          })),
+                    Text.rich(TextSpan(
+                        style: TextStyle(color: Colors.red),
+                        text: "四级",
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            print("ff.....");
+                          })),
+                  ],
+                ))),
+      ],
+    );
+  }
+}
+
+//unused _stackF statefull widge
+class _SstackF extends StatefulWidget {
+  const _SstackF({super.key});
+
+  @override
+  State<_SstackF> createState() => _SstackFState();
+}
+
+class _SstackFState extends State<_SstackF>
+    with SingleTickerProviderStateMixin {
+  late TabController _subtabController;
+  @override
+  void dispose() {
+    super.dispose();
+    _subtabController.dispose();
+  }
+
+  @override
+  void initState() {
+    _subtabController = TabController(length: 4, vsync: this);
+    _subtabController.addListener(() {
+      if (_subtabController.animation!.value == _subtabController.index) {
+        print(_subtabController.index);
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(20),
+          child: AppBar(
+            title: SizedBox(
+                child: TabBar(
+                    indicatorColor: Colors.red,
+                    labelColor: Colors.black,
+                    unselectedLabelColor: Colors.grey,
+                    padding: EdgeInsets.all(2),
+                    controller: _subtabController,
+                    tabs: const [
+                  Text("Stack"),
+                  Text("Stack Align"),
+                  Text("Stack Positioned"),
+                  Text("Stack fixed navigator bar"),
+                ])),
+          ),
+        ),
+        body: TabBarView(
+          controller: _subtabController,
+          children: const [
+            SizedBox(child: Text("data")),
+            SizedBox(child: Text("data")),
+            SizedBox(child: Text("data")),
+            SizedBox(child: Text("data")),
+          ],
+        ));
   }
 }
 
@@ -294,5 +478,120 @@ class _respectRatioF extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         alignment: Alignment.center, child: const Text("respect Ratio"));
+  }
+}
+
+// ignore: camel_case_types
+class subt {
+  var tt = Container(
+    alignment: Alignment.center,
+    height: 500,
+    width: 500,
+    child: ListView(
+      padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+      children: const [
+        Text("一级.."),
+        Text("二级.."),
+        Text("三级.."),
+        Text("四级.."),
+        Text("五级.."),
+        Text("六级.."),
+        Text("七级.."),
+        Text("八级.."),
+        Text("九级.."),
+        Text("十级.."),
+        Text("一级.."),
+        Text("一级.."),
+        Text("一级.."),
+        Text("一级."),
+        Text("一级."),
+        Text("一级"),
+        Text("一级"),
+        Text("二十级"),
+        Text("一级"),
+        Text("一级"),
+        Text("一级"),
+        Text("一级"),
+        Text("最后级"),
+      ],
+    ),
+  );
+  // ignore: prefer_typing_uninitialized_variables
+}
+// ignore: camel_case_types
+// class subStackPage1() {
+//    Container(
+//       alignment: Alignment.center,
+//       height: 500,
+//       width: 500,
+//       child: ListView(
+//         padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+//         children: const [
+//           Text("一级.."),
+//           Text("二级.."),
+//           Text("三级.."),
+//           Text("四级.."),
+//           Text("五级.."),
+//           Text("六级.."),
+//           Text("七级.."),
+//           Text("八级.."),
+//           Text("九级.."),
+//           Text("十级.."),
+//           Text("一级.."),
+//           Text("一级.."),
+//           Text("一级.."),
+//           Text("一级."),
+//           Text("一级."),
+//           Text("一级"),
+//           Text("一级"),
+//           Text("二十级"),
+//           Text("一级"),
+//           Text("一级"),
+//           Text("一级"),
+//           Text("一级"),
+//           Text("最后级"),
+//         ],
+//       ),
+//     );
+// }
+
+class subStackPageFirst extends StatelessWidget {
+  const subStackPageFirst({Key? key}) : super(key: key); // super.Key 跨组件
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      height: 500,
+      width: 500,
+      child: ListView(
+        padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+        children: const [
+          Text("一级.."),
+          Text("二级.."),
+          Text("三级.."),
+          Text("四级.."),
+          Text("五级.."),
+          Text("六级.."),
+          Text("七级.."),
+          Text("八级.."),
+          Text("九级.."),
+          Text("十级.."),
+          Text("一级.."),
+          Text("一级.."),
+          Text("一级.."),
+          Text("一级."),
+          Text("一级."),
+          Text("一级"),
+          Text("一级"),
+          Text("二十级"),
+          Text("一级"),
+          Text("一级"),
+          Text("一级"),
+          Text("一级"),
+          Text("最后级"),
+        ],
+      ),
+    );
   }
 }

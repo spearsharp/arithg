@@ -1,0 +1,69 @@
+Date : 2023-09-14 21:32:52
+Directory : /Users/project/arithg/lib
+Total : 33 files,  2589 codes, 328 comments, 253 blanks, all 3170 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Dart     |         33 |      2,589 |        328 |        253 |      3,170 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                     | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                        |         33 |      2,589 |        328 |        253 |      3,170 |
+| . (Files)                                                |          2 |        264 |         46 |         30 |        340 |
+| instances                                                |          4 |        556 |         85 |         46 |        687 |
+| others                                                   |          2 |        108 |          3 |         14 |        125 |
+| pages                                                    |          4 |        127 |          3 |         20 |        150 |
+| res                                                      |          1 |         37 |          0 |          1 |         38 |
+| routers                                                  |          1 |         61 |          3 |          4 |         68 |
+| services                                                 |          2 |         39 |          4 |         11 |         54 |
+| tabs                                                     |         10 |      1,020 |         64 |         68 |      1,152 |
+| tabs (Files)                                             |          5 |        841 |         61 |         41 |        943 |
+| tabs/home                                                |          1 |         30 |          1 |          7 |         38 |
+| tabs/user                                                |          4 |        149 |          2 |         20 |        171 |
+| utils                                                    |          7 |        377 |        120 |         59 |        556 |
++----------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                 | language | code       | comment    | blank      | total      |
++----------------------------------------------------------+----------+------------+------------+------------+------------+
+| /Users/project/arithg/lib/instances/gridview.dart        | Dart     |        135 |          3 |         10 |        148 |
+| /Users/project/arithg/lib/instances/icons.dart           | Dart     |         37 |          0 |          4 |         41 |
+| /Users/project/arithg/lib/instances/infraview.dart       | Dart     |        207 |         70 |         22 |        299 |
+| /Users/project/arithg/lib/instances/listview.dart        | Dart     |        177 |         12 |         10 |        199 |
+| /Users/project/arithg/lib/main.dart                      | Dart     |         40 |          9 |          6 |         55 |
+| /Users/project/arithg/lib/others/main_ListTitletest.dart | Dart     |         51 |          1 |          7 |         59 |
+| /Users/project/arithg/lib/others/main_statefultest1.dart | Dart     |         57 |          2 |          7 |         66 |
+| /Users/project/arithg/lib/pages/form.dart                | Dart     |         31 |          2 |          5 |         38 |
+| /Users/project/arithg/lib/pages/news.dart                | Dart     |         30 |          0 |          5 |         35 |
+| /Users/project/arithg/lib/pages/search.dart              | Dart     |         36 |          0 |          5 |         41 |
+| /Users/project/arithg/lib/pages/searchPage.dart          | Dart     |         30 |          1 |          5 |         36 |
+| /Users/project/arithg/lib/res/listData.dart              | Dart     |         37 |          0 |          1 |         38 |
+| /Users/project/arithg/lib/routers/routers.dart           | Dart     |         61 |          3 |          4 |         68 |
+| /Users/project/arithg/lib/services/localStorage.dart     | Dart     |         18 |          1 |          4 |         23 |
+| /Users/project/arithg/lib/services/screeenAdapter.dart   | Dart     |         21 |          3 |          7 |         31 |
+| /Users/project/arithg/lib/tabs/category.dart             | Dart     |         51 |         21 |          4 |         76 |
+| /Users/project/arithg/lib/tabs/home.dart                 | Dart     |        361 |          2 |          6 |        369 |
+| /Users/project/arithg/lib/tabs/home/homeTabPage.dart     | Dart     |         30 |          1 |          7 |         38 |
+| /Users/project/arithg/lib/tabs/message.dart              | Dart     |        248 |         30 |         16 |        294 |
+| /Users/project/arithg/lib/tabs/people.dart               | Dart     |         34 |          0 |          4 |         38 |
+| /Users/project/arithg/lib/tabs/setting.dart              | Dart     |        147 |          8 |         11 |        166 |
+| /Users/project/arithg/lib/tabs/user/login.dart           | Dart     |         23 |          0 |          5 |         28 |
+| /Users/project/arithg/lib/tabs/user/registerFirst.dart   | Dart     |         33 |          0 |          5 |         38 |
+| /Users/project/arithg/lib/tabs/user/registerSecond.dart  | Dart     |         31 |          0 |          5 |         36 |
+| /Users/project/arithg/lib/tabs/user/registerThird.dart   | Dart     |         62 |          2 |          5 |         69 |
+| /Users/project/arithg/lib/test.dart                      | Dart     |        224 |         37 |         24 |        285 |
+| /Users/project/arithg/lib/utils/dialog.dart              | Dart     |          0 |         38 |          5 |         43 |
+| /Users/project/arithg/lib/utils/helper.dart              | Dart     |         96 |          0 |         10 |        106 |
+| /Users/project/arithg/lib/utils/iconsUtil.dart           | Dart     |          8 |          0 |          2 |         10 |
+| /Users/project/arithg/lib/utils/ink.dart                 | Dart     |        104 |         34 |         21 |        159 |
+| /Users/project/arithg/lib/utils/keepAliveWrapper.dart    | Dart     |         24 |          4 |          7 |         35 |
+| /Users/project/arithg/lib/utils/leftdrawer.dart          | Dart     |         22 |          0 |          4 |         26 |
+| /Users/project/arithg/lib/utils/tabs.dart                | Dart     |        123 |         44 |         10 |        177 |
+| Total                                                    |          |      2,589 |        328 |        253 |      3,170 |
++----------------------------------------------------------+----------+------------+------------+------------+------------+
