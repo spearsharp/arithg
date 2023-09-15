@@ -387,7 +387,9 @@ class _stackF extends StatelessWidget {
                         text: "二级",
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            const subStackPageFirst();
+                            const subStackPageFirst(
+                              tt: 'TT',
+                            );
                           })),
                     Text.rich(TextSpan(
                         style: TextStyle(color: Colors.red),
@@ -476,87 +478,86 @@ class _respectRatioF extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        alignment: Alignment.center, child: const Text("respect Ratio"));
+    return AspectRatio(
+        aspectRatio: 2 / 1,
+        child: Container(
+            color: Colors.blue,
+            child: ListView(
+              children: [
+                Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  margin: EdgeInsets.all(10),
+                  elevation: 20,
+                  child: const Column(children: [
+                    ListTile(
+                      title: Text("张三"),
+                      subtitle: Text("高级软件工程师"),
+                    ),
+                    Divider(),
+                    ListTile(title: Text("Zhongguo")),
+                    ListTile(title: Text("Beijing s s")),
+                  ]),
+                ),
+                Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  margin: EdgeInsets.all(10),
+                  elevation: 20,
+                  child: const Column(children: [
+                    ListTile(
+                      title: Text("张三"),
+                      subtitle: Text("高级软件工程师"),
+                    ),
+                    Divider(),
+                    ListTile(title: Text("Zhongguo")),
+                    ListTile(title: Text("Beijing s s")),
+                  ]),
+                ),
+                Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  margin: EdgeInsets.all(10),
+                  elevation: 20,
+                  child: const Column(children: [
+                    ListTile(
+                      title: Text("张三"),
+                      subtitle: Text("高级软件工程师"),
+                    ),
+                    Divider(),
+                    ListTile(title: Text("Zhongguo")),
+                    ListTile(title: Text("Beijing s s")),
+                  ]),
+                ),
+                Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  margin: EdgeInsets.all(10),
+                  elevation: 20,
+                  child: const Column(children: [
+                    ListTile(
+                      title: Text("张三"),
+                      subtitle: Text("高级软件工程师"),
+                    ),
+                    Divider(),
+                    ListTile(title: Text("Zhongguo")),
+                    ListTile(title: Text("Beijing s s")),
+                  ]),
+                ),
+              ],
+            )));
   }
 }
 
 // ignore: camel_case_types
-class subt {
-  var tt = Container(
-    alignment: Alignment.center,
-    height: 500,
-    width: 500,
-    child: ListView(
-      padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-      children: const [
-        Text("一级.."),
-        Text("二级.."),
-        Text("三级.."),
-        Text("四级.."),
-        Text("五级.."),
-        Text("六级.."),
-        Text("七级.."),
-        Text("八级.."),
-        Text("九级.."),
-        Text("十级.."),
-        Text("一级.."),
-        Text("一级.."),
-        Text("一级.."),
-        Text("一级."),
-        Text("一级."),
-        Text("一级"),
-        Text("一级"),
-        Text("二十级"),
-        Text("一级"),
-        Text("一级"),
-        Text("一级"),
-        Text("一级"),
-        Text("最后级"),
-      ],
-    ),
-  );
-  // ignore: prefer_typing_uninitialized_variables
-}
-// ignore: camel_case_types
-// class subStackPage1() {
-//    Container(
-//       alignment: Alignment.center,
-//       height: 500,
-//       width: 500,
-//       child: ListView(
-//         padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-//         children: const [
-//           Text("一级.."),
-//           Text("二级.."),
-//           Text("三级.."),
-//           Text("四级.."),
-//           Text("五级.."),
-//           Text("六级.."),
-//           Text("七级.."),
-//           Text("八级.."),
-//           Text("九级.."),
-//           Text("十级.."),
-//           Text("一级.."),
-//           Text("一级.."),
-//           Text("一级.."),
-//           Text("一级."),
-//           Text("一级."),
-//           Text("一级"),
-//           Text("一级"),
-//           Text("二十级"),
-//           Text("一级"),
-//           Text("一级"),
-//           Text("一级"),
-//           Text("一级"),
-//           Text("最后级"),
-//         ],
-//       ),
-//     );
-// }
 
 class subStackPageFirst extends StatelessWidget {
-  const subStackPageFirst({Key? key}) : super(key: key); // super.Key 跨组件
+  final String tt;
+  const subStackPageFirst({Key? key, required this.tt}); // super.Key 跨组件
+  @override
+  void initState() {
+    print(tt);
+  }
 
   @override
   Widget build(BuildContext context) {
