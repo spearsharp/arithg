@@ -40,11 +40,15 @@ class _MessageState extends State<Message> {
             ),
             _iconInstances(),
             SizedBox(
-              height: 3,
+              height: 1,
             ),
             _buildBottomTip(),
             SizedBox(
-              height: 3,
+              height: 1,
+            ),
+            _listView(),
+            SizedBox(
+              height: 1,
             ),
             _container1()
           ]),
@@ -192,6 +196,36 @@ class _buttonA extends StatelessWidget {
                           '点击文字按钮触发方法'); // click to realize the onTap function
                     },
                 )))),
+//Container Button按钮组件
+        Container(
+            // margin: const EdgeInsets.all(6),
+            // margin: const EdgeInsets.fromLTRB(0, 0, 0, 0), //离四周边距
+            // padding: const EdgeInsets.fromLTRB(0, 0, 0, 0), //离四周边距
+            alignment: Alignment.center,
+            margin: const EdgeInsets.all(1),
+            width: 160,
+            height: 18,
+            decoration: BoxDecoration(
+                color: Colors.blue,
+                border: Border.all(color: Colors.black, width: 0.8),
+                borderRadius: BorderRadius.circular(20.0)),
+            child: Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child: Text.rich(TextSpan(
+                  text: "Flutter按钮及State全样例",
+                  style: const TextStyle(
+                      fontSize: 11,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      Navigator.pushNamed(context, "/buttonView",
+                          arguments: {"title": "title"});
+                      print(
+                          '点击文字按钮触发方法'); // click to realize the onTap function
+                    },
+                )))),
       ],
     ));
   }
@@ -206,12 +240,6 @@ class _buildBottomTip extends StatelessWidget {
     return Container(
         child: Column(
       children: [
-        IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, "/listview");
-              print("ok");
-            },
-            icon: const Icon(Icons.list_sharp)),
         Text.rich(
           TextSpan(
             children: [
@@ -275,6 +303,22 @@ class _iconInstances extends StatelessWidget {
   }
 }
 
+class _listView extends StatelessWidget {
+  const _listView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: IconButton(
+          onPressed: () {
+            Navigator.pushNamed(context, "/listview");
+            print("ok");
+          },
+          icon: const Icon(Icons.list_sharp)),
+    );
+  }
+}
+
 //容器样式测试组件
 class _container1 extends StatelessWidget {
   // gridview
@@ -282,8 +326,8 @@ class _container1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.all(10),
-        padding: EdgeInsets.all(5),
+        margin: EdgeInsets.all(1),
+        padding: EdgeInsets.all(3),
         color: Colors.amber,
         child: const Text(
           "容器样式测试1",

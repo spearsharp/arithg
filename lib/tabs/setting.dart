@@ -39,13 +39,13 @@ class _SettingState extends State<Setting> {
               TextButton(
                   onPressed: () {
                     print("取消");
-                    Navigator.pop(context, 'cancel');
+                    // Navigator.pop(context, 'cancel');
                   },
                   child: const Text("取消")),
               TextButton(
                   onPressed: () {
                     print("确定");
-                    Navigator.pop(context, 'ok');
+                    // Navigator.pop(context, 'ok');
                   },
                   child: const Text("确定"))
             ],

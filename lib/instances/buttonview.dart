@@ -2,15 +2,15 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/utils.dart';
 
-class InfraViewPage extends StatefulWidget {
+class ButtonViewPage extends StatefulWidget {
   final Map arguments;
-  const InfraViewPage({Key? key, required this.arguments});
+  const ButtonViewPage({Key? key, required this.arguments});
 
   @override
-  State<InfraViewPage> createState() => _InfraViewPageState();
+  State<ButtonViewPage> createState() => _ButtonViewPageState();
 }
 
-class _InfraViewPageState extends State<InfraViewPage>
+class _ButtonViewPageState extends State<ButtonViewPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -51,25 +51,23 @@ class _InfraViewPageState extends State<InfraViewPage>
                   labelStyle: const TextStyle(
                       fontSize: 16, fontWeight: FontWeight.w600),
                   tabs: const [
-                    Tab(child: Center(child: Text("padding页"))),
-                    Tab(child: Center(child: Text("row页"))),
-                    Tab(child: Center(child: Text("colume页"))),
-                    Tab(child: Center(child: Text("flex页"))),
-                    Tab(child: Center(child: Text("stack页"))),
-                    Tab(child: Center(child: Text("aspectRatio页"))),
+                    Tab(child: Center(child: Text("ElevatorBtn页"))),
+                    Tab(child: Center(child: Text("TextBtn页"))),
+                    Tab(child: Center(child: Text("OutLinedButton页"))),
+                    Tab(child: Center(child: Text("IconBtn页"))),
+                    Tab(child: Center(child: Text("综合Btn页"))),
                   ]),
             ),
           ),
         ),
         body: TabBarView(
           controller: _tabController,
-          children: [
+          children: const [
             SizedBox(child: _paddingF()),
             SizedBox(child: _rowF()),
             SizedBox(child: _columeF()),
             SizedBox(child: _flexF()),
             SizedBox(child: _stackF()),
-            SizedBox(child: _respectRatioF()),
           ],
         ));
   }
@@ -325,99 +323,10 @@ class _flexF extends StatelessWidget {
 }
 
 //stack sub page
-class _stackF extends StatefulWidget {
-  const _stackF({super.key});
-
-  @override
-  State<_stackF> createState() => _stackFState();
-}
-
-class _stackFState extends State<_stackF> with SingleTickerProviderStateMixin {
-  late TabController _subtablcontroller;
-  @override
-  void initState() {
-    super.initState();
-    _subtablcontroller = TabController(length: 4, vsync: this);
-    _subtablcontroller.addListener(() {
-      if (_subtablcontroller.animation!.value == _subtablcontroller.index) {
-        print(_subtablcontroller.index);
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _subtablcontroller.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(30),
-          child: AppBar(
-              automaticallyImplyLeading: false,
-              backgroundColor: Colors.amber[100],
-              foregroundColor: Colors.amberAccent[30],
-              title: SizedBox(
-                child: TabBar(
-                    controller: _subtablcontroller,
-                    unselectedLabelStyle: const TextStyle(
-                        fontSize: 12, fontWeight: FontWeight.w500),
-                    labelStyle: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.w600),
-                    isScrollable: true,
-                    labelColor: Color.fromARGB(255, 21, 3, 13),
-                    dividerColor: Colors.black,
-                    indicatorColor: Color.fromARGB(255, 5, 48, 113),
-                    tabs: const [
-                      Tab(
-                        child: Center(
-                            child: Text(
-                          "一级",
-                        )),
-                      ),
-                      Tab(
-                        child: Center(
-                          child: CircleAvatar(
-                            backgroundImage: AssetImage("images/portrait.jpg"),
-                          ),
-                        ),
-                      ),
-                      Tab(
-                        child: Text("三级"),
-                      ),
-                      Tab(
-                        child: Text("四级"),
-                      ),
-                    ]),
-              )),
-        ),
-        body: TabBarView(controller: _subtablcontroller, children: [
-          SizedBox(
-              child: Text.rich(TextSpan(
-                  style: TextStyle(color: Colors.red),
-                  text: "一级",
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      const subStackPageFirst(
-                        tt: 'TT',
-                      );
-                      print("2layer...");
-                    }))),
-          const Center(
-              child: CircleAvatar(
-                  backgroundImage: AssetImage("images/portrait.jpg"))),
-          const Text("456"),
-          const Text("789"),
-        ]));
-  }
-}
 
 //stack feature
-class _TstackF extends StatelessWidget {
-  const _TstackF({super.key});
+class _stackF extends StatelessWidget {
+  const _stackF({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -476,11 +385,10 @@ class _TstackF extends StatelessWidget {
                         text: "二级",
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            const subStackPageFirst(
-                              tt: 'TT',
-                            );
-                            print("2layer...");
-                            // const _SstackF();
+                            // const subStackPageFirst(
+                            //   tt: 'TT',
+                            // );
+                            const _SstackF();
                           })),
                     Text.rich(TextSpan(
                         style: TextStyle(color: Colors.red),
@@ -504,158 +412,66 @@ class _TstackF extends StatelessWidget {
 }
 
 //unused _stackF statefull widge
+class _SstackF extends StatefulWidget {
+  const _SstackF({super.key});
 
-//respectRatio feature
-class _respectRatioF extends StatelessWidget {
-  const _respectRatioF({super.key});
+  @override
+  State<_SstackF> createState() => _SstackFState();
+}
+
+class _SstackFState extends State<_SstackF>
+    with SingleTickerProviderStateMixin {
+  late TabController _subtabController;
+  @override
+  void dispose() {
+    super.dispose();
+    _subtabController.dispose();
+  }
+
+  @override
+  void initState() {
+    _subtabController = TabController(length: 4, vsync: this);
+    _subtabController.addListener(() {
+      if (_subtabController.animation!.value == _subtabController.index) {
+        print(_subtabController.index);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-        aspectRatio: 2 / 1,
-        child: Container(
-            color: Colors.blue,
-            child: ListView(
-              children: [
-                Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  margin: EdgeInsets.all(10),
-                  elevation: 30,
-                  child: const Column(children: [
-                    ListTile(
-                      title: Text("张三"),
-                      subtitle: Text("高级软件工程师"),
-                    ),
-                    Divider(),
-                    ListTile(title: Text("Zhongguo")),
-                    ListTile(title: Text("Beijing s s")),
-                  ]),
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  margin: EdgeInsets.all(10),
-                  elevation: 10,
-                  child: const Column(children: [
-                    ListTile(
-                      title: Text("张三"),
-                      subtitle: Text("高级软件工程师"),
-                    ),
-                    Divider(),
-                    ListTile(title: Text("Zhongguo")),
-                    ListTile(title: Text("Beijing s s")),
-                  ]),
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  margin: EdgeInsets.all(10),
-                  elevation: 20,
-                  child: const Column(children: [
-                    ListTile(
-                      title: Text("张三"),
-                      subtitle: Text("高级软件工程师"),
-                    ),
-                    Divider(),
-                    ListTile(title: Text("Zhongguo")),
-                    ListTile(title: Text("Beijing s s")),
-                  ]),
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  margin: EdgeInsets.all(10),
-                  elevation: 20,
-                  child: const Column(children: [
-                    ListTile(
-                      title: Text("张三"),
-                      subtitle: Text("高级软件工程师"),
-                    ),
-                    Divider(),
-                    ListTile(title: Text("Zhongguo")),
-                    ListTile(title: Text("Beijing s s")),
-                  ]),
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  margin: EdgeInsets.all(10),
-                  elevation: 20,
-                  child: const Column(children: [
-                    ListTile(
-                      title: Text("张三"),
-                      subtitle: Text("高级软件工程师"),
-                    ),
-                    Divider(),
-                    ListTile(title: Text("Zhongguo")),
-                    ListTile(title: Text("Beijing s s")),
-                  ]),
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  margin: EdgeInsets.all(10),
-                  elevation: 20,
-                  child: const Column(children: [
-                    ListTile(
-                      title: Text("张三"),
-                      subtitle: Text("高级软件工程师"),
-                    ),
-                    Divider(),
-                    ListTile(title: Text("Zhongguo")),
-                    ListTile(title: Text("Beijing s s")),
-                  ]),
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  margin: EdgeInsets.all(10),
-                  elevation: 20,
-                  child: const Column(children: [
-                    ListTile(
-                      title: Text("张三"),
-                      subtitle: Text("高级软件工程师"),
-                    ),
-                    Divider(),
-                    ListTile(title: Text("Zhongguo")),
-                    ListTile(title: Text("Beijing s s")),
-                  ]),
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  margin: EdgeInsets.all(10),
-                  elevation: 20,
-                  child: const Column(children: [
-                    ListTile(
-                      title: Text("张三"),
-                      subtitle: Text("高级软件工程师"),
-                    ),
-                    Divider(),
-                    ListTile(title: Text("Zhongguo")),
-                    ListTile(title: Text("Beijing s s")),
-                  ]),
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  margin: EdgeInsets.all(10),
-                  elevation: 20,
-                  child: const Column(children: [
-                    ListTile(
-                      title: Text("张三"),
-                      subtitle: Text("高级软件工程师"),
-                    ),
-                    Divider(),
-                    ListTile(title: Text("Zhongguo")),
-                    ListTile(title: Text("Beijing s s")),
-                  ]),
-                ),
-              ],
-            )));
+    return Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(20),
+          child: AppBar(
+            title: SizedBox(
+                child: TabBar(
+                    indicatorColor: Colors.red,
+                    labelColor: Colors.black,
+                    unselectedLabelColor: Colors.grey,
+                    padding: EdgeInsets.all(2),
+                    controller: _subtabController,
+                    tabs: const [
+                  Text("Stack"),
+                  Text("Stack Align"),
+                  Text("Stack Positioned"),
+                  Text("Stack fixed navigator bar"),
+                ])),
+          ),
+        ),
+        body: TabBarView(
+          controller: _subtabController,
+          children: const [
+            SizedBox(child: Text("data")),
+            SizedBox(child: Text("data")),
+            SizedBox(child: Text("data")),
+            SizedBox(child: Text("data")),
+          ],
+        ));
   }
 }
+
+//respectRatio feature
 
 // ignore: camel_case_types
 
