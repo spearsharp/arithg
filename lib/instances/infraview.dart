@@ -63,12 +63,12 @@ class _InfraViewPageState extends State<InfraViewPage>
         ),
         body: TabBarView(
           controller: _tabController,
-          children: [
+          children: const [
             SizedBox(child: _paddingF()),
             SizedBox(child: _rowF()),
             SizedBox(child: _columeF()),
             SizedBox(child: _flexF()),
-            SizedBox(child: _stackF()),
+            SizedBox(child: _stackF()), //stack页
             SizedBox(child: _respectRatioF()),
           ],
         ));
@@ -415,7 +415,8 @@ class _stackFState extends State<_stackF> with SingleTickerProviderStateMixin {
   }
 }
 
-//stack feature
+//stack feature , no use ...
+/*
 class _TstackF extends StatelessWidget {
   const _TstackF({super.key});
 
@@ -502,7 +503,7 @@ class _TstackF extends StatelessWidget {
     );
   }
 }
-
+*/
 //unused _stackF statefull widge
 
 //respectRatio feature
