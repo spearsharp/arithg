@@ -16,25 +16,37 @@ class _IconsInstancesState extends State<IconsInstances> {
         body: Center(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      Icon(Icons.play_for_work_sharp),
-      Icon(Icons.add_a_photo_outlined),
-      IconButton.outlined(
-          onPressed: () {
-            print("icon测试");
-          },
-          icon: Icon(Icons.add_business_sharp)),
-      IconButton(
-        icon: Icon(IconsPool.music1),
-        onPressed: () {
-          print("private icons");
-        },
+      const Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Icon(Icons.play_for_work_sharp),
+          Icon(Icons.add_a_photo_outlined),
+        ],
       ),
-      IconButton(
-        icon: Icon(IconsPool.music1),
-        onPressed: () {
-          print("private icons");
-        },
-      )
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          IconButton.outlined(
+              icon: const Icon(Icons.add_business_sharp),
+              onPressed: () {
+                print("icon测试 biz add");
+              }),
+          IconButton(
+            icon: const Icon(IconsPool.music1),
+            onPressed: () {
+              print("private icons");
+            },
+          ),
+          IconButton(
+            style: ButtonStyle(
+                maximumSize: MaterialStateProperty.all(const Size(10.0, 10.0))),
+            icon: const Icon(IconsPool.facemask),
+            onPressed: () {
+              print("private icons wechat");
+            },
+          ),
+        ],
+      ),
     ])));
   }
 }

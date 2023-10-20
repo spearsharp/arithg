@@ -357,42 +357,44 @@ class _stackFState extends State<_stackF> with SingleTickerProviderStateMixin {
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(30),
           child: AppBar(
-              automaticallyImplyLeading: false,
-              backgroundColor: Colors.amber[100],
-              foregroundColor: Colors.amberAccent[30],
-              title: SizedBox(
-                child: TabBar(
-                    controller: _subtablcontroller,
-                    unselectedLabelStyle: const TextStyle(
-                        fontSize: 12, fontWeight: FontWeight.w500),
-                    labelStyle: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.w600),
-                    isScrollable: true,
-                    labelColor: Color.fromARGB(255, 21, 3, 13),
-                    dividerColor: Colors.black,
-                    indicatorColor: Color.fromARGB(255, 5, 48, 113),
-                    tabs: const [
-                      Tab(
-                        child: Center(
-                            child: Text(
-                          "一级",
-                        )),
-                      ),
-                      Tab(
-                        child: Center(
-                          child: CircleAvatar(
-                            backgroundImage: AssetImage("images/portrait.jpg"),
-                          ),
+            centerTitle: true,
+            automaticallyImplyLeading: false,
+            backgroundColor: Colors.amber[100],
+            foregroundColor: Colors.amberAccent[30],
+            title: SizedBox(
+              child: TabBar(
+                  controller: _subtablcontroller,
+                  unselectedLabelStyle: const TextStyle(
+                      fontSize: 12, fontWeight: FontWeight.w500),
+                  labelStyle: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.w600),
+                  isScrollable: true,
+                  labelColor: Color.fromARGB(255, 21, 3, 13),
+                  dividerColor: Colors.black,
+                  indicatorColor: Color.fromARGB(255, 5, 48, 113),
+                  tabs: const [
+                    Tab(
+                      child: Center(
+                          child: Text(
+                        "一级",
+                      )),
+                    ),
+                    Tab(
+                      child: Center(
+                        child: CircleAvatar(
+                          backgroundImage: AssetImage("images/portrait.jpg"),
                         ),
                       ),
-                      Tab(
-                        child: Text("三级"),
-                      ),
-                      Tab(
-                        child: Text("四级"),
-                      ),
-                    ]),
-              )),
+                    ),
+                    Tab(
+                      child: Text("三级"),
+                    ),
+                    Tab(
+                      child: Text("四级"),
+                    ),
+                  ]),
+            ),
+          ),
         ),
         body: TabBarView(controller: _subtablcontroller, children: [
           SizedBox(
