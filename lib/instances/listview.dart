@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../res/listData.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ListViewPage extends StatefulWidget {
   final Map arguments;
@@ -9,190 +9,166 @@ class ListViewPage extends StatefulWidget {
   State<ListViewPage> createState() => _ListViewPageState();
 }
 
-class _ListViewPageState extends State<ListViewPage>
-    with SingleTickerProviderStateMixin {
-  //tabbar controller
-  late TabController _tabController;
-  List<Widget> _initListView() {
-    //直接定义List 数组widget 循环完，返回List[]
-    List<Widget> list = [];
-    for (var i = 0; i < 10; i++) {
-      list.add(const ListTile(
-        title: Text("动态列表"),
-      ));
-    }
-    return list;
+class _ListViewPageState extends State<ListViewPage> {
+  void _toastElevBIcon() {
+    Fluttertoast.showToast(
+        msg: "显示信息",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+        fontSize: 16.0);
   }
 
-  List<Widget> _initListViewData() {
-    var tmplist = listData.map(
-      // (value) => ListTile(title: Text(value["title"])),
-      (value) => Container(
-          child: Column(
-        children: [
-          Image.network(value["imageUrl"]),
-          Text(value["title"]),
-          Text(value["author"]),
-        ],
-      )),
-    );
-    return tmplist.toList();
-  }
-
-  //dispose _tabContorller
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    _tabController.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(
-        length: 4, vsync: this); // pending on learn the vsync variable
-    _tabController.addListener(() {
-      if (_tabController.animation!.value == _tabController.index) {
-        // pending on check the arttribute value
-        print(_tabController.index);
-      }
-    });
-  }
-
-  // @override
-  // void initState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(50.0),
-          child: AppBar(
-              backgroundColor: Color.fromARGB(255, 202, 144, 144),
-              elevation: 0.1,
-              title: SizedBox(
-                  child: TabBar(
-                isScrollable: true,
-                indicatorColor: Colors.red,
-                unselectedLabelColor: Color.fromARGB(255, 18, 23, 18),
-                indicatorSize: TabBarIndicatorSize.label,
-                controller: _tabController,
-                tabs: const [
-                  Tab(child: (Text("静态list"))),
-                  Tab(child: (Text("动态组建"))),
-                  Tab(child: (Text("LVBlder"))),
-                  Tab(child: (Text("动态LVBlder")))
-                ],
-              ))),
+        body: ListView(
+      children: [
+        Row(
+          children: [
+            ElevatedButton(
+                onPressed: () {
+                  const AlertDialog(
+                      title: Text("Button phase - 62 curriculum"),
+                      content: Text("ElevatedButton"));
+                  _toastElevBIcon;
+                },
+                child: const Icon(Icons.elevator_outlined)),
+            TextButton(
+                onPressed: () {
+                  const AlertDialog(
+                    title: Text("Button phase - 62 curriculum"),
+                    content: Text("textbutton"),
+                  );
+                  _toastElevBIcon;
+                },
+                child: const Icon(Icons.text_format_rounded)),
+            OutlinedButton(
+                onPressed: () {
+                  const AlertDialog(
+                      title: Text("Button phase curriculum"),
+                      content: Text("OutlineButton"));
+                  _toastElevBIcon;
+                },
+                child: const Icon(Icons.outlined_flag)),
+          ],
         ),
-        body: TabBarView(controller: _tabController, children: [
-          SizedBox(
-            height:
-                100, //sizedbox height无效 参考 https://cloud.tencent.com/developer/ask/sof/776772=
-            child: ListView(
-              children: <Widget>[
-                const ListTile(leading: Icon(Icons.tiktok), title: Text("抖音")),
-                const ListTile(
-                    leading: Icon(Icons.airplane_ticket), title: Text("代付款")),
-                const ListTile(
-                    leading: Icon(Icons.card_giftcard_outlined),
-                    title: Text("代收货")),
-                const ListTile(
-                    leading: Icon(Icons.favorite), title: Text("我的珍藏")),
-                const Divider(),
-                const ListTile(
-                    leading: Icon(Icons.circle_notifications),
-                    title: Text("在线客服")),
-                ListTile(
-                  leading: Image.network(
-                      "https://www.itying.com/images/flutter/1.png"),
-                  title: const Text('华北黄淮高温雨今起强势登场'),
-                  subtitle: const Text("中国天气网讯 21日开始，华北黄淮高温雨今起强势登场"),
-                ),
-                const Divider(),
-                ListTile(
-                  leading: Image.network(
-                      "https://www.itying.com/images/flutter/2.png"),
-                  title: const Text('保监局50天开32罚单 “断供”违规资金为房市降温'),
-                  subtitle: const Text("中国天气网讯 保监局50天开32罚单 “断供”违规资金为房市降温"),
-                ),
-              ],
-            ),
+        Row(
+          children: [
+            IconButton(
+                icon: const Icon(Icons.ac_unit_sharp),
+                onPressed: () {
+                  const AlertDialog(
+                      title: Text("Button phase curriculum"),
+                      content: Text("IconButton"));
+                  _toastElevBIcon;
+                }),
+            ElevatedButton.icon(
+                onPressed: _toastElevBIcon,
+                icon: Icon(Icons.send_and_archive_outlined),
+                label: Text("发送")),
+            SizedBox(
+                height: 40,
+                width: 130,
+                child: ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.amber),
+                        foregroundColor:
+                            MaterialStateProperty.all(Colors.black87)),
+                    onPressed: () {
+                      _toastElevBIcon;
+                    },
+                    child: const Text("高度宽度"))),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+                child: Container(
+              height: 30,
+              margin: const EdgeInsets.all(10),
+              child: ElevatedButton(
+                child: Text("自适应按钮"),
+                onPressed: () {
+                  print("自适应按钮");
+                },
+              ),
+            ))
+          ],
+        ),
+        ElevatedButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.amber),
+              foregroundColor: MaterialStateProperty.all(Colors.black38),
+              elevation: MaterialStateProperty.all(10),
+              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)))),
+          onPressed: () {
+            print("圆角按钮");
+          },
+          child: Text("圆角按钮"),
+        ),
+        Container(
+          height: 30,
+          child: ElevatedButton(
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.amber),
+                foregroundColor: MaterialStateProperty.all(Colors.black38),
+                shape: MaterialStateProperty.all(
+                    CircleBorder(side: BorderSide(color: Colors.white38)))),
+            onPressed: () {
+              print("圆形按钮");
+            },
+            child:
+                Container(margin: EdgeInsets.all(2), child: const Text("圆形按钮")),
           ),
-          SizedBox(
-            height: 80,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                Container(
-                  width: 180,
-                  height: 40,
-                  color: Colors.red,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                height: 30,
+                margin: const EdgeInsets.all(20),
+                child: OutlinedButton(
+                  style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all(Colors.black),
+                      side: MaterialStateProperty.all(const BorderSide(
+                          width: 1, color: Colors.deepOrangeAccent))),
+                  child: const Text("外边框按钮"),
+                  onPressed: () {
+                    print("边框按钮");
+                  },
                 ),
-                Container(
-                  width: 180.0,
-                  height: 40,
-                  color: Colors.orange,
-                  child: Column(
-                    children: <Widget>[
-                      Image.network(
-                          "https://www.itying.com/images/flutter/1.png"),
-                      const Text('我是一个文本')
-                    ],
-                  ),
-                ),
-                Container(
-                  width: 180.0,
-                  height: 40,
-                  color: Colors.blue,
-                ),
-                Container(
-                  width: 180.0,
-                  height: 40,
-                  color: Colors.deepOrange,
-                ),
-                Container(
-                  width: 180.0,
-                  height: 40,
-                  color: Colors.deepPurpleAccent,
-                )
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 80,
-            child: ListView(
-              // children: _initListView(), // 直接引用List循环建立完毕的数组
-              children: _initListViewData(), // 直接引用ListData数据循环建立完毕的数组
-            ),
-          ),
-          SizedBox(
-            height: 80,
-            child: ListPage(), //循环构建List[] 中的ListTile widget
-          )
-        ]));
-  }
-}
-
-//dynamic listView via ListView.builder
-class ListPage extends StatelessWidget {
-  List list = [];
-  ListPage({Key? key}) : super(key: key) {
-    // pending on learn key herical and widget builder
-    for (var i = 0; i < 100; i++) {
-      list.add("我是一个列表--$i");
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-        // 返回一个widget extend 组件 ，接以上List 顺序执行 for循环 每次super key一下 widget build一个 return ListTile
-        itemCount: list.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text("${list[index]}"),
-          );
-        });
+              ),
+            )
+          ],
+        ),
+        ListTile(
+          leading: Text("aciton"),
+          title: Text("Elevated Button"),
+        ),
+        ListTile(
+          leading: Text("aciton"),
+          title: Text("Elevated Button"),
+        ),
+        ListTile(
+          leading: Text("aciton"),
+          title: Text("Elevated Button"),
+        ),
+        ListTile(
+          leading: Text("aciton"),
+          title: Text("Elevated Button"),
+        ),
+        ListTile(
+          leading: Text("aciton"),
+          title: Text("Elevated Button"),
+        ),
+      ],
+    ));
   }
 }

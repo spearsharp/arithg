@@ -311,7 +311,8 @@ class _listView extends StatelessWidget {
     return Container(
       child: IconButton(
           onPressed: () {
-            Navigator.pushNamed(context, "/listview");
+            Navigator.pushNamed(context, "/listView",
+                arguments: {"title": "title"});
             print("ok");
           },
           icon: const Icon(Icons.list_sharp)),
