@@ -330,8 +330,12 @@ class _container1 extends StatelessWidget {
         margin: EdgeInsets.all(1),
         padding: EdgeInsets.all(3),
         color: Colors.amber,
-        child: const Text(
-          "容器样式测试1",
+        child: InkWell(
+          onTap: () {
+            Navigator.pushNamed(context, "/wrapView",
+                arguments: {"title": "title"});
+          },
+          child: Text("wrap容器样式测试1"),
           // style: TextStyle(fontSize: 15),
         ));
   }

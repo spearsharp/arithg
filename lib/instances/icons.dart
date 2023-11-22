@@ -17,14 +17,14 @@ class _IconsInstancesState extends State<IconsInstances> {
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       const Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(Icons.play_for_work_sharp),
           Icon(Icons.add_a_photo_outlined),
         ],
       ),
       Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           IconButton.outlined(
               icon: const Icon(Icons.add_business_sharp),
@@ -38,8 +38,8 @@ class _IconsInstancesState extends State<IconsInstances> {
             },
           ),
           IconButton(
-            style: ButtonStyle(
-                maximumSize: MaterialStateProperty.all(const Size(10.0, 10.0))),
+            // style: ButtonStyle(
+            //     maximumSize: MaterialStateProperty.all(const Size(10, 10))),
             icon: const Icon(IconsPool.facemask),
             onPressed: () {
               print("private icons wechat");

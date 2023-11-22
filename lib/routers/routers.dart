@@ -8,6 +8,7 @@ import '../instances/icons.dart';
 import '../instances/gridview.dart';
 import '../instances/infraview.dart';
 import '../instances/listview.dart';
+import '../instances/wrapview.dart';
 import '../pages/form.dart';
 import '../pages/searchPage.dart';
 import '../pages/search.dart';
@@ -28,6 +29,7 @@ final Map<String, Function> routes = {
   "/iconsInstances": (context, {arguments}) =>
       IconsInstances(arguments: arguments),
   "/listView": (context, {arguments}) => ListViewPage(arguments: arguments),
+  "/wrapView": (context, {arguments}) => WrapViewPage(arguments: arguments),
   "/gridView": (context, {arguments}) => GridViewPage(arguments: arguments),
   "/infraView": (context, {arguments}) => InfraViewPage(arguments: arguments),
   "/buttonView": (context, {arguments}) => ButtonViewPage(arguments: arguments),
