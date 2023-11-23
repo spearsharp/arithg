@@ -247,10 +247,16 @@ class _buildBottomTip extends StatelessWidget {
         Text.rich(
           TextSpan(
             children: [
-              const TextSpan(
+              TextSpan(
+                  text: "跳到Key页面演示",
+                  style: TextStyle(color: Colors.red),
                   // 文字链接
-                  text: "这是要显示的文字",
-                  style: TextStyle(color: Colors.red)),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      Navigator.pushNamed(context, "/keypageView",
+                          arguments: {"title": "title"}); // listView 例子
+                      print('点击文字触发方法'); // click to realize the onTap function)
+                    }),
               TextSpan(
                   text: "这是可以点击的文字",
                   style: TextStyle(color: Colors.blue),

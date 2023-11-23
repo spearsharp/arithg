@@ -8,6 +8,7 @@ import '../instances/countView.dart';
 import '../instances/icons.dart';
 import '../instances/gridview.dart';
 import '../instances/infraview.dart';
+import '../instances/keypage.dart';
 import '../instances/listview.dart';
 import '../instances/wrapview.dart';
 import '../pages/form.dart';
@@ -35,6 +36,7 @@ final Map<String, Function> routes = {
   "/gridView": (context, {arguments}) => GridViewPage(arguments: arguments),
   "/infraView": (context, {arguments}) => InfraViewPage(arguments: arguments),
   "/buttonView": (context, {arguments}) => ButtonViewPage(arguments: arguments),
+  "/keypageView": (context, {arguments}) => KeyPage(arguments: arguments),
   // "/home": (context) => const HomeTabpage(),
   "/form": (context, {arguments}) => FormPage(arguments: arguments),
   "/news": (context, {arguments}) => NewsPage(arguments: arguments),
