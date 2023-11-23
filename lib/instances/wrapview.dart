@@ -32,6 +32,7 @@ class _WrapViewPageState extends State<WrapViewPage> {
           title: Container(
               alignment: Alignment.center, child: Text("wrap phase123"))),
       body: const _LayoutEpisode(),
+
       // const Center(
       //   child: Text("wrap phase"),
       // ),
@@ -87,6 +88,9 @@ class _LayoutEpisode extends StatelessWidget {
               ),
             ],
           ),
+          SizedBox(
+            height: 30,
+          ),
           Row(
             children: [
               Text(
@@ -134,6 +138,9 @@ class _LayoutEpisode extends StatelessWidget {
                 title: Text("时尚"),
               ),
             ],
+          ),
+          const SizedBox(
+            height: 20,
           ),
           Stack(alignment: Alignment.bottomCenter, children: [
             OutlinedButton(onPressed: _toastElevBIcon, child: Text("清空历史记录"))

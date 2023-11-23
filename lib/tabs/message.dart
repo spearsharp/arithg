@@ -50,7 +50,11 @@ class _MessageState extends State<Message> {
             SizedBox(
               height: 1,
             ),
-            _container1()
+            _container1(),
+            SizedBox(
+              height: 5,
+            ),
+            _statefullwidge(),
           ]),
     );
   }
@@ -338,5 +342,22 @@ class _container1 extends StatelessWidget {
           child: Text("wrap容器样式测试1"),
           // style: TextStyle(fontSize: 15),
         ));
+  }
+}
+
+class _statefullwidge extends StatelessWidget {
+  const _statefullwidge({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: TextButton(
+        onPressed: () {
+          Navigator.pushNamed(context, "/countView",
+              arguments: {"title": "title"});
+        },
+        child: const Text("自动计数器"),
+      ),
+    );
   }
 }

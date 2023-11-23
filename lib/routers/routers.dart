@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart'; // need to update xcode widget first
 import 'package:get/route_manager.dart';
 import 'package:get/utils.dart';
 import '../instances/buttonview.dart';
+import '../instances/countView.dart';
 import '../instances/icons.dart';
 import '../instances/gridview.dart';
 import '../instances/infraview.dart';
@@ -28,6 +29,7 @@ final Map<String, Function> routes = {
   "/home": (context) => const HomeTabpage(),
   "/iconsInstances": (context, {arguments}) =>
       IconsInstances(arguments: arguments),
+  "/countView": (context, {arguments}) => CountView(arguments: arguments),
   "/listView": (context, {arguments}) => ListViewPage(arguments: arguments),
   "/wrapView": (context, {arguments}) => WrapViewPage(arguments: arguments),
   "/gridView": (context, {arguments}) => GridViewPage(arguments: arguments),
