@@ -27,63 +27,55 @@ class _countPage extends StatefulWidget {
 
 class _countPageState extends State<_countPage> {
   int countNum = 0;
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView(children: [
-        Center(child: Text("$countNum")),
-        ElevatedButton(
-            onPressed: () {
-              setState(() {
-                countNum++;
-              });
-              // countNum++;
-              print(countNum);
-            },
-            child: const Icon(Icons.add_alarm)),
-        ElevatedButton(
-            onPressed: () {
-              setState(() {
-                countNum--;
-              });
-              print(countNum);
-            },
-            child: const Icon(Icons.minimize_rounded)),
-        const _listAdd() // refer to pdf3.1 page205
-      ]),
-    );
-  }
-}
-
-class _listAdd extends StatefulWidget {
-  const _listAdd();
-
-  @override
-  State<_listAdd> createState() => __listAddState();
-}
-
-class __listAddState extends State<_listAdd> {
   List<Widget> list = [];
   @override
   Widget build(BuildContext context) {
-    return ListView(children: [
+    return Scaffold(
+        body: ListView(children: [
+      Center(child: Text("$countNum")),
+      ElevatedButton(
+          onPressed: () {
+            setState(() {
+              countNum++;
+            });
+            // countNum++;
+            print(countNum);
+          },
+          child: const Icon(Icons.add_alarm)),
+      ElevatedButton(
+          onPressed: () {
+            setState(() {
+              countNum--;
+            });
+            print(countNum);
+          },
+          child: const Icon(Icons.minimize_rounded)),
       Column(
-          children: list.map((value) {
-        return ListTile(
-          title: Text(value as String),
-        );
-      }).toList()),
-      Padding(
-          padding: const EdgeInsets.all(40),
-          child: ElevatedButton.icon(
-              onPressed: () {
-                setState(() {
-                  list.add("增加一条" as Widget);
-                });
-                print(list);
-              },
-              icon: Icon(Icons.add_box_sharp),
-              label: Text("添加行")))
-    ]);
+        children: [
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    list.add(const Text("增加一条数据"));
+                  });
+                  print(list);
+                },
+                child: const Text("增加")),
+            ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    list.removeLast();
+                  });
+                  print(list);
+                },
+                child: const Text("减少")),
+          ]),
+          const SizedBox(
+            height: 80,
+          ),
+          Column(children: list),
+        ],
+      )
+    ]));
   }
 }
