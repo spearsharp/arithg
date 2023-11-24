@@ -10,13 +10,33 @@ class KeyPage extends StatefulWidget {
 }
 
 class _KeyPageState extends State<KeyPage> {
-  List<Widget> list = [
-    _Box(key: const ValueKey(1), color: Colors.amber),
-    _Box(key: ObjectKey(_Box(color: Colors.red)), color: Colors.red),
-    _Box(key: UniqueKey(), color: Colors.blue),
-  ];
+  //Global key optimized
+  List<Widget> list = [];
+  final GlobalKey _key1 = GlobalKey();
+  final GlobalKey _key2 = GlobalKey();
+  final GlobalKey _key3 = GlobalKey();
+
+  @override
+  void initState() {
+    //TODO:  implement initState
+    super.initState();
+    list = [
+      _Box(key: _key1, color: Colors.amber),
+      _Box(key: _key2, color: Colors.red),
+      _Box(key: _key3, color: Colors.blue),
+    ];
+  }
+
+  //Private Key
+  // List<Widget> list = [
+  //   _Box(key: const ValueKey(1), color: Colors.amber),
+  //   _Box(key: ObjectKey(_Box(color: Colors.red)), color: Colors.red),
+  //   _Box(key: UniqueKey(), color: Colors.blue),
+  // ];
   @override
   Widget build(BuildContext context) {
+    print("media screen:");
+    print(MediaQuery.of(context).orientation);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -30,10 +50,15 @@ class _KeyPageState extends State<KeyPage> {
         centerTitle: true,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: list,
-        ),
+        child: MediaQuery.of(context).orientation == Orientation.portrait
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: list,
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: list,
+              ),
       ),
     );
   }
@@ -41,7 +66,7 @@ class _KeyPageState extends State<KeyPage> {
 
 class _Box extends StatefulWidget {
   Color color;
-  _Box({super.key, required this.color});
+  _Box({Key? key, required this.color}) : super(key: key);
 
   @override
   State<_Box> createState() => __BoxState();

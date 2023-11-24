@@ -5,11 +5,13 @@ import 'package:get/route_manager.dart';
 import 'package:get/utils.dart';
 import '../instances/buttonview.dart';
 import '../instances/countView.dart';
+import '../instances/fadeanimationview.dart';
 import '../instances/icons.dart';
 import '../instances/gridview.dart';
 import '../instances/infraview.dart';
 import '../instances/keypage.dart';
 import '../instances/listview.dart';
+import '../instances/scaleanimationview.dart';
 import '../instances/wrapview.dart';
 import '../pages/form.dart';
 import '../pages/searchPage.dart';
@@ -35,6 +37,10 @@ final Map<String, Function> routes = {
   "/wrapView": (context, {arguments}) => WrapViewPage(arguments: arguments),
   "/gridView": (context, {arguments}) => GridViewPage(arguments: arguments),
   "/infraView": (context, {arguments}) => InfraViewPage(arguments: arguments),
+  "/fadeAnimationView": (context, {arguments}) =>
+      FadeAnimationPage(arguments: arguments),
+  "/scaleAnimationView": (context, {arguments}) =>
+      ScaleAnimationPage(arguments: arguments),
   "/buttonView": (context, {arguments}) => ButtonViewPage(arguments: arguments),
   "/keypageView": (context, {arguments}) => KeyPage(arguments: arguments),
   // "/home": (context) => const HomeTabpage(),

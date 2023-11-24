@@ -18,25 +18,25 @@ class _MessageState extends State<Message> {
   @override
   Widget build(BuildContext context) {
     // return const Scaffold(body: Center(child: const Text("中间中间标题")));
-    return const Scaffold(
-      body: Column(
+    return Scaffold(
+      body: ListView(
           // mainAxisAlignment: MainAxisAlignment.switch (expression) {    // pending to learn
           //   pattern => value,
           // },
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+          // mainAxisAlignment: MainAxisAlignment.center,
+          // crossAxisAlignment: CrossAxisAlignment.center,
+          children: const [
             _tangle(),
             SizedBox(
-              height: 3,
+              height: 2,
             ),
             _buttonA(),
             SizedBox(
-              height: 3,
+              height: 2,
             ),
             _clipOvalPic(),
             SizedBox(
-              height: 3,
+              height: 2,
             ),
             _iconInstances(),
             SizedBox(
@@ -52,7 +52,27 @@ class _MessageState extends State<Message> {
             ),
             _container1(),
             SizedBox(
-              height: 5,
+              height: 2,
+            ),
+            _statefullwidge(),
+            SizedBox(
+              height: 2,
+            ),
+            _statefullwidge(),
+            SizedBox(
+              height: 2,
+            ),
+            _statefullwidge(),
+            SizedBox(
+              height: 2,
+            ),
+            _statefullwidge(),
+            SizedBox(
+              height: 2,
+            ),
+            _statefullwidge(),
+            SizedBox(
+              height: 2,
             ),
             _statefullwidge(),
           ]),
@@ -356,14 +376,235 @@ class _statefullwidge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: TextButton(
-        onPressed: () {
-          Navigator.pushNamed(context, "/countView",
-              arguments: {"title": "title"});
-        },
-        child: const Text("自动计数器"),
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        TextButton(
+          onPressed: () {
+            Navigator.pushNamed(context, "/countView",
+                arguments: {"title": "title"});
+          },
+          child: const Text("自动计数器"),
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.pushNamed(context, "/fadeAnimationView",
+                arguments: {"title": "title"});
+          },
+          child: const Text("隐式动画"),
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.pushNamed(context, "/scaleAnimationView",
+                arguments: {"title": "title"});
+          },
+          child: const Text("显示动画"),
+        ),
+      ],
     );
   }
 }
+
+// class _statefullwidge extends StatelessWidget {
+//   const _statefullwidge({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       children: [
+//         TextButton(
+//           onPressed: () {
+//             Navigator.pushNamed(context, "/countView",
+//                 arguments: {"title": "title"});
+//           },
+//           child: const Text("自动计数器"),
+//         ),
+//         TextButton(
+//           onPressed: () {
+//             Navigator.pushNamed(context, "/fadeAnimationView",
+//                 arguments: {"title": "title"});
+//           },
+//           child: const Text("隐式动画"),
+//         ),
+//         TextButton(
+//           onPressed: () {
+//             Navigator.pushNamed(context, "/scaleAnimationView",
+//                 arguments: {"title": "title"});
+//           },
+//           child: const Text("显示动画"),
+//         ),
+//       ],
+//     );
+//   }
+// }
+
+// class _statefullwidge extends StatelessWidget {
+//   const _statefullwidge({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       children: [
+//         TextButton(
+//           onPressed: () {
+//             Navigator.pushNamed(context, "/countView",
+//                 arguments: {"title": "title"});
+//           },
+//           child: const Text("自动计数器"),
+//         ),
+//         TextButton(
+//           onPressed: () {
+//             Navigator.pushNamed(context, "/fadeAnimationView",
+//                 arguments: {"title": "title"});
+//           },
+//           child: const Text("隐式动画"),
+//         ),
+//         TextButton(
+//           onPressed: () {
+//             Navigator.pushNamed(context, "/scaleAnimationView",
+//                 arguments: {"title": "title"});
+//           },
+//           child: const Text("显示动画"),
+//         ),
+//       ],
+//     );
+//   }
+// }
+
+// class _statefullwidge extends StatelessWidget {
+//   const _statefullwidge({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       children: [
+//         TextButton(
+//           onPressed: () {
+//             Navigator.pushNamed(context, "/countView",
+//                 arguments: {"title": "title"});
+//           },
+//           child: const Text("自动计数器"),
+//         ),
+//         TextButton(
+//           onPressed: () {
+//             Navigator.pushNamed(context, "/fadeAnimationView",
+//                 arguments: {"title": "title"});
+//           },
+//           child: const Text("隐式动画"),
+//         ),
+//         TextButton(
+//           onPressed: () {
+//             Navigator.pushNamed(context, "/scaleAnimationView",
+//                 arguments: {"title": "title"});
+//           },
+//           child: const Text("显示动画"),
+//         ),
+//       ],
+//     );
+//   }
+// }
+
+// class _statefullwidge extends StatelessWidget {
+//   const _statefullwidge({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       children: [
+//         TextButton(
+//           onPressed: () {
+//             Navigator.pushNamed(context, "/countView",
+//                 arguments: {"title": "title"});
+//           },
+//           child: const Text("自动计数器"),
+//         ),
+//         TextButton(
+//           onPressed: () {
+//             Navigator.pushNamed(context, "/fadeAnimationView",
+//                 arguments: {"title": "title"});
+//           },
+//           child: const Text("隐式动画"),
+//         ),
+//         TextButton(
+//           onPressed: () {
+//             Navigator.pushNamed(context, "/scaleAnimationView",
+//                 arguments: {"title": "title"});
+//           },
+//           child: const Text("显示动画"),
+//         ),
+//       ],
+//     );
+//   }
+// }
+
+// class _statefullwidge extends StatelessWidget {
+//   const _statefullwidge({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       children: [
+//         TextButton(
+//           onPressed: () {
+//             Navigator.pushNamed(context, "/countView",
+//                 arguments: {"title": "title"});
+//           },
+//           child: const Text("自动计数器"),
+//         ),
+//         TextButton(
+//           onPressed: () {
+//             Navigator.pushNamed(context, "/fadeAnimationView",
+//                 arguments: {"title": "title"});
+//           },
+//           child: const Text("隐式动画"),
+//         ),
+//         TextButton(
+//           onPressed: () {
+//             Navigator.pushNamed(context, "/scaleAnimationView",
+//                 arguments: {"title": "title"});
+//           },
+//           child: const Text("显示动画"),
+//         ),
+//       ],
+//     );
+//   }
+// }
+
+// class _statefullwidge extends StatelessWidget {
+//   const _statefullwidge({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       children: [
+//         TextButton(
+//           onPressed: () {
+//             Navigator.pushNamed(context, "/countView",
+//                 arguments: {"title": "title"});
+//           },
+//           child: const Text("自动计数器"),
+//         ),
+//         TextButton(
+//           onPressed: () {
+//             Navigator.pushNamed(context, "/fadeAnimationView",
+//                 arguments: {"title": "title"});
+//           },
+//           child: const Text("隐式动画"),
+//         ),
+//         TextButton(
+//           onPressed: () {
+//             Navigator.pushNamed(context, "/scaleAnimationView",
+//                 arguments: {"title": "title"});
+//           },
+//           child: const Text("显示动画"),
+//         ),
+//       ],
+//     );
+//   }
+// }
