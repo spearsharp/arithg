@@ -32,7 +32,7 @@ class _BottomTabsState extends State<BottomTabs> {
     // }
   }
 
-  final List<Widget> _pages = const [
+  final List<Widget> _pages = [
     Home(),
     Category(),
     Message(),

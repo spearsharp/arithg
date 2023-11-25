@@ -4,11 +4,11 @@ import 'dart:io';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import '../instances/animatedPlugin/animatedSwitcher.dart';
 import 'package:get/utils.dart';
 
 class Message extends StatefulWidget {
-  const Message({super.key});
-
+  Message({Key? key}) : super(key: key);
   @override
   State<Message> createState() => _MessageState();
 }
@@ -74,7 +74,7 @@ class _MessageState extends State<Message> {
             SizedBox(
               height: 2,
             ),
-            _statefullwidge(),
+            _animatedwidge(),
           ]),
     );
   }
@@ -405,39 +405,46 @@ class _statefullwidge extends StatelessWidget {
   }
 }
 
-// class _statefullwidge extends StatelessWidget {
-//   const _statefullwidge({super.key});
+class _animatedwidge extends StatelessWidget {
+  const _animatedwidge({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Row(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: [
-//         TextButton(
-//           onPressed: () {
-//             Navigator.pushNamed(context, "/countView",
-//                 arguments: {"title": "title"});
-//           },
-//           child: const Text("自动计数器"),
-//         ),
-//         TextButton(
-//           onPressed: () {
-//             Navigator.pushNamed(context, "/fadeAnimationView",
-//                 arguments: {"title": "title"});
-//           },
-//           child: const Text("隐式动画"),
-//         ),
-//         TextButton(
-//           onPressed: () {
-//             Navigator.pushNamed(context, "/scaleAnimationView",
-//                 arguments: {"title": "title"});
-//           },
-//           child: const Text("显示动画"),
-//         ),
-//       ],
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+              return const AnimationSwitcher(title: "title1");
+            }));
+            // Navigator.pushNamed(context, "/countView",   // use router.dart
+            //     arguments: {"title": "title"});
+          },
+          child: const Text("Switcher动画"),
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+              return const AnimationSwitcher(title: "title2");
+            }));
+          },
+          child: const Text("自定义动画trinBlder"),
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.pushNamed(context, "/scaleAnimationView",
+                arguments: {"title": "title"});
+          },
+          child: const Text("改变子元素动画trinBlder"),
+        ),
+      ],
+    );
+  }
+}
+
+
+
 
 // class _statefullwidge extends StatelessWidget {
 //   const _statefullwidge({super.key});
