@@ -1,11 +1,16 @@
 import 'dart:io';
 import 'dart:io';
 
+import 'package:arithg/instances/animatedPlugin/animatedSlidePage.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import '../instances/animatedPlugin/animatedSwitcher.dart';
 import 'package:get/utils.dart';
+
+import '../instances/animatedPlugin/animationctrlpage.dart';
+import '../instances/animatedPlugin/heroanimatedPage.dart';
+import '../instances/animatedPlugin/rotationanimation.dart';
 
 class Message extends StatefulWidget {
   Message({Key? key}) : super(key: key);
@@ -58,23 +63,16 @@ class _MessageState extends State<Message> {
             SizedBox(
               height: 2,
             ),
-            _statefullwidge(),
-            SizedBox(
-              height: 2,
-            ),
-            _statefullwidge(),
-            SizedBox(
-              height: 2,
-            ),
-            _statefullwidge(),
-            SizedBox(
-              height: 2,
-            ),
-            _statefullwidge(),
-            SizedBox(
-              height: 2,
-            ),
             _animatedwidge(),
+            SizedBox(
+              height: 2,
+            ),
+            _animatedCtrl(),
+            SizedBox(
+              height: 20,
+            ),
+            animatedIcon(),
+            SizedBox(height: 20),
           ]),
     );
   }
@@ -410,208 +408,182 @@ class _animatedwidge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Container(
+        padding: EdgeInsets.all(2),
+        margin: EdgeInsets.all(2),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return const AnimationSwitcher(title: "title1");
+                }));
+                // Navigator.pushNamed(context, "/countView",   // use router.dart
+                //     arguments: {"title": "title"});
+              },
+              child: const Text("Switcher动画"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return const AnimationSwitcher(title: "title2");
+                }));
+              },
+              child: const Text("自定义动画trinBlder"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/scaleAnimationView",
+                    arguments: {"title": "title"});
+              },
+              child: const Text("改变子元素anibld"),
+            ),
+          ],
+        ));
+  }
+}
+
+class _animatedCtrl extends StatefulWidget {
+  const _animatedCtrl();
+
+  @override
+  State<_animatedCtrl> createState() => __animatedCtrlState();
+}
+
+class __animatedCtrlState extends State<_animatedCtrl> {
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TextButton(
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-              return const AnimationSwitcher(title: "title1");
+              return const RotationAnimation();
             }));
-            // Navigator.pushNamed(context, "/countView",   // use router.dart
-            //     arguments: {"title": "title"});
           },
-          child: const Text("Switcher动画"),
+          child: const Text("旋转动画"),
         ),
         TextButton(
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-              return const AnimationSwitcher(title: "title2");
+              return const AnimationCtrlPage();
             }));
           },
-          child: const Text("自定义动画trinBlder"),
+          child: const Text("控制动画"),
         ),
         TextButton(
-          onPressed: () {
-            Navigator.pushNamed(context, "/scaleAnimationView",
-                arguments: {"title": "title"});
-          },
-          child: const Text("改变子元素动画trinBlder"),
-        ),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return const AnimatedSlidePage();
+              }));
+            },
+            child: const Text("移动动画"))
+        // TextButton(
+        //   onPressed: () {
+        //     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+        //       return const RotationAnimation();
+        //     }));
+        //   },
+        //   child: Text("旋转动画"),
+        // ),
       ],
     );
   }
 }
 
+class animatedIcon extends StatefulWidget {
+  const animatedIcon();
 
+  @override
+  State<animatedIcon> createState() => __animatedIconState();
+}
 
+class __animatedIconState extends State<animatedIcon> {
+  int _counter = 0;
+  Future<int> getNetwordData() {
+    return Future.value(12);
+  }
 
-// class _statefullwidge extends StatelessWidget {
-//   const _statefullwidge({super.key});
+  void _incrementCounter() {
+    getNetwordData()
+        .then((value) {
+          return value * 2;
+        })
+        .then((value) => print(value))
+        .onError((error, stackTrace) => {print(error)})
+        .whenComplete(() => print("完成"));
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Row(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: [
-//         TextButton(
-//           onPressed: () {
-//             Navigator.pushNamed(context, "/countView",
-//                 arguments: {"title": "title"});
-//           },
-//           child: const Text("自动计数器"),
-//         ),
-//         TextButton(
-//           onPressed: () {
-//             Navigator.pushNamed(context, "/fadeAnimationView",
-//                 arguments: {"title": "title"});
-//           },
-//           child: const Text("隐式动画"),
-//         ),
-//         TextButton(
-//           onPressed: () {
-//             Navigator.pushNamed(context, "/scaleAnimationView",
-//                 arguments: {"title": "title"});
-//           },
-//           child: const Text("显示动画"),
-//         ),
-//       ],
-//     );
-//   }
-// }
+    print("执行");
+    print(_counter);
+    setState(() {
+      _counter++;
+    });
+  }
 
-// class _statefullwidge extends StatelessWidget {
-//   const _statefullwidge({super.key});
+  void _incrementCounterErrCatch() async {
+    try {
+      await getNetwordData().then((value) {
+        return value / 12;
+      }).then((value) => print(value));
+    } catch (e) {
+      print(e);
+    }
+    setState(() {
+      _counter++;
+    });
+  }
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Row(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: [
-//         TextButton(
-//           onPressed: () {
-//             Navigator.pushNamed(context, "/countView",
-//                 arguments: {"title": "title"});
-//           },
-//           child: const Text("自动计数器"),
-//         ),
-//         TextButton(
-//           onPressed: () {
-//             Navigator.pushNamed(context, "/fadeAnimationView",
-//                 arguments: {"title": "title"});
-//           },
-//           child: const Text("隐式动画"),
-//         ),
-//         TextButton(
-//           onPressed: () {
-//             Navigator.pushNamed(context, "/scaleAnimationView",
-//                 arguments: {"title": "title"});
-//           },
-//           child: const Text("显示动画"),
-//         ),
-//       ],
-//     );
-//   }
-// }
-
-// class _statefullwidge extends StatelessWidget {
-//   const _statefullwidge({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Row(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: [
-//         TextButton(
-//           onPressed: () {
-//             Navigator.pushNamed(context, "/countView",
-//                 arguments: {"title": "title"});
-//           },
-//           child: const Text("自动计数器"),
-//         ),
-//         TextButton(
-//           onPressed: () {
-//             Navigator.pushNamed(context, "/fadeAnimationView",
-//                 arguments: {"title": "title"});
-//           },
-//           child: const Text("隐式动画"),
-//         ),
-//         TextButton(
-//           onPressed: () {
-//             Navigator.pushNamed(context, "/scaleAnimationView",
-//                 arguments: {"title": "title"});
-//           },
-//           child: const Text("显示动画"),
-//         ),
-//       ],
-//     );
-//   }
-// }
-
-// class _statefullwidge extends StatelessWidget {
-//   const _statefullwidge({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Row(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: [
-//         TextButton(
-//           onPressed: () {
-//             Navigator.pushNamed(context, "/countView",
-//                 arguments: {"title": "title"});
-//           },
-//           child: const Text("自动计数器"),
-//         ),
-//         TextButton(
-//           onPressed: () {
-//             Navigator.pushNamed(context, "/fadeAnimationView",
-//                 arguments: {"title": "title"});
-//           },
-//           child: const Text("隐式动画"),
-//         ),
-//         TextButton(
-//           onPressed: () {
-//             Navigator.pushNamed(context, "/scaleAnimationView",
-//                 arguments: {"title": "title"});
-//           },
-//           child: const Text("显示动画"),
-//         ),
-//       ],
-//     );
-//   }
-// }
-
-// class _statefullwidge extends StatelessWidget {
-//   const _statefullwidge({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Row(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: [
-//         TextButton(
-//           onPressed: () {
-//             Navigator.pushNamed(context, "/countView",
-//                 arguments: {"title": "title"});
-//           },
-//           child: const Text("自动计数器"),
-//         ),
-//         TextButton(
-//           onPressed: () {
-//             Navigator.pushNamed(context, "/fadeAnimationView",
-//                 arguments: {"title": "title"});
-//           },
-//           child: const Text("隐式动画"),
-//         ),
-//         TextButton(
-//           onPressed: () {
-//             Navigator.pushNamed(context, "/scaleAnimationView",
-//                 arguments: {"title": "title"});
-//           },
-//           child: const Text("显示动画"),
-//         ),
-//       ],
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      alignment: WrapAlignment.center,
+      direction: Axis.horizontal,
+      children: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+              return const RotationAnimation();
+            }));
+          },
+          child: const Text("自定义Icon动画"),
+        ),
+        TextButton(
+          onPressed: () {
+            _incrementCounter();
+            _incrementCounterErrCatch();
+            // Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            //   return const AnimationCtrlPage();
+            // }));
+          },
+          child: const Text("自定义显示动画"),
+        ),
+        TextButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return const AnimatedSlidePage();
+              }));
+            },
+            child: const Text("自定义显示动画")),
+        TextButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return const HeroAnimatedPage();
+              }));
+            },
+            child: const Text("Hero动画")),
+        // TextButton(
+        //   onPressed: () {
+        //     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+        //       return const RotationAnimation();
+        //     }));
+        //   },
+        //   child: Text("旋转动画"),
+        // ),
+      ],
+    );
+  }
+}

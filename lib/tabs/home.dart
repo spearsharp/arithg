@@ -46,6 +46,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     labelColor: Colors.red,
                     unselectedLabelColor: Colors.white,
                     indicatorSize: TabBarIndicatorSize.label,
+                    tabAlignment: TabAlignment.start,
                     controller:
                         _tabController, // controller must be in one page
                     tabs: const [
@@ -91,7 +92,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             ListTile(title: Text("视频tab")),
             ListTile(title: Text("视频tab")),
             ListTile(title: Text("视频tab")),
-            ListTile(title: Text("视频tab")),
+            ListTile(title: Text("视频tab")),ss
             ListTile(title: Text("视频tab")),
             ListTile(title: Text("视频tab4")),
             ListTile(title: Text("视频tab")),

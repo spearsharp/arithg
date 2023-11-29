@@ -24,6 +24,7 @@ import '../tabs/user/registerFirst.dart';
 import '../tabs/user/registerSecond.dart';
 import '../tabs/user/registerThird.dart';
 import '../utils/tabs.dart';
+import '../instances/animatedPlugin/hero.dart';
 
 //depoly route
 final Map<String, Function> routes = {
@@ -35,6 +36,7 @@ final Map<String, Function> routes = {
   "/countView": (context, {arguments}) => CountView(arguments: arguments),
   "/listView": (context, {arguments}) => ListViewPage(arguments: arguments),
   "/wrapView": (context, {arguments}) => WrapViewPage(arguments: arguments),
+  "/hero": (context, {arguments}) => HeroPage(arguments: arguments),
   "/gridView": (context, {arguments}) => GridViewPage(arguments: arguments),
   "/infraView": (context, {arguments}) => InfraViewPage(arguments: arguments),
   "/fadeAnimationView": (context, {arguments}) =>
