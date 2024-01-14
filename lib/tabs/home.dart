@@ -92,7 +92,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             ListTile(title: Text("视频tab")),
             ListTile(title: Text("视频tab")),
             ListTile(title: Text("视频tab")),
-            ListTile(title: Text("视频tab")),ss
+            ListTile(title: Text("视频tab")),
             ListTile(title: Text("视频tab")),
             ListTile(title: Text("视频tab4")),
             ListTile(title: Text("视频tab")),

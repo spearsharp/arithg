@@ -22,7 +22,9 @@ class _HeroAnimatedPageState extends State<HeroAnimatedPage> {
             children: <Widget>[
               Hero(
                 tag: value['imageUrl'],
-                child: Image.network(value['imageUrl']),
+                child: Image.network(value['imageUrl']
+                
+                ),
               ),
               const SizedBox(
                 height: 10,

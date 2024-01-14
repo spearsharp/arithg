@@ -101,25 +101,6 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// Future<void> saveData(int level) async {
-//   final prefs = await SharedPreferences.getInstance();
-//   prefs.setInt("CurrentLevel", level);
-// }
-
-// Future<int?> fetchData() async {
-//   final prefs = await SharedPreferences.getInstance();
-//   Future<int?> clevel;
-//   // ignore: unrelated_type_equality_checks
-//   if (prefs.getInt("CurrentLevel") == "") {
-//     clevel = 0 as Future<int?>;
-//     print("Currentlevel is  null: $clevel");
-//   } else {
-//     clevel = prefs.getInt("CurrentLevel") as Future<int?>;
-//     print("Currentlevel is not null: $clevel");
-//   }
-//   return clevel;
-// }
-
 //Arithmatic game section
 class Game extends StatefulWidget {
   final StreamController<int> inputController;

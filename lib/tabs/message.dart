@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:io';
 
 import 'package:arithg/instances/animatedPlugin/animatedSlidePage.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -30,7 +31,7 @@ class _MessageState extends State<Message> {
           // },
           // mainAxisAlignment: MainAxisAlignment.center,
           // crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
+          children: [
             _tangle(),
             SizedBox(
               height: 2,
@@ -447,13 +448,21 @@ class _animatedwidge extends StatelessWidget {
 }
 
 class _animatedCtrl extends StatefulWidget {
-  const _animatedCtrl();
+  // final AudioPlayer audioPlayer;
+  _animatedCtrl({super.key});
 
   @override
   State<_animatedCtrl> createState() => __animatedCtrlState();
 }
 
 class __animatedCtrlState extends State<_animatedCtrl> {
+  AudioPlayer audioPlayer = AudioPlayer();
+
+  void _musicPlay() async {
+    await audioPlayer.play(UrlSource(
+        'https://img3.tukuppt.com/newpreview_music/09/01/62/5c89fd22dea6948307.mp3'));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -481,15 +490,21 @@ class __animatedCtrlState extends State<_animatedCtrl> {
                 return const AnimatedSlidePage();
               }));
             },
-            child: const Text("移动动画"))
-        // TextButton(
-        //   onPressed: () {
-        //     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-        //       return const RotationAnimation();
-        //     }));
-        //   },
-        //   child: Text("旋转动画"),
-        // ),
+            child: const Text("移动动画")),
+        TextButton(
+          onPressed: () {
+            print("err output:");
+            _musicPlay();
+          },
+          child: Text("播放"),
+        ),
+        TextButton(
+          onPressed: () {
+            print("err output:");
+            audioPlayer.stop();
+          },
+          child: Text("暂停播放"),
+        ),
       ],
     );
   }
@@ -500,9 +515,11 @@ class animatedIcon extends StatefulWidget {
 
   @override
   State<animatedIcon> createState() => __animatedIconState();
-}
+}ss
 
 class __animatedIconState extends State<animatedIcon> {
+  final GlobalKey _globalkey = GlobalKey();
+
   int _counter = 0;
   Future<int> getNetwordData() {
     return Future.value(12);
@@ -553,6 +570,10 @@ class __animatedIconState extends State<animatedIcon> {
         ),
         TextButton(
           onPressed: () {
+            // final RenderBox _globalkeyrender =
+            //     _globalkey.currentContext!.findRenderObject as RenderBox;
+            // final Offset _globalkeyOffset =
+            //     _globalkeyrender.localToGlobal(Offset.infinite);
             _incrementCounter();
             _incrementCounterErrCatch();
             // Navigator.of(context).push(MaterialPageRoute(builder: (context) {

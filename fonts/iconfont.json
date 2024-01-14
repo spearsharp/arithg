@@ -60,6 +60,13 @@
       "font_class": "niunai-01",
       "unicode": "e626",
       "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "33438698",
+      "name": "金币2",
+      "font_class": "jinbi2",
+      "unicode": "e628",
+      "unicode_decimal": 58920
     }
   ]
 }
