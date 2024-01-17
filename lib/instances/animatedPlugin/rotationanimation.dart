@@ -19,8 +19,8 @@ class _RotationAnimationState extends State<RotationAnimation>
         vsync:
             this, //Vsync 机制可以理解为是显卡与显示器的通信桥梁，显卡在渲染每一帧之前会等待垂直同步信号，只有显示器完成了一次刷新时，发出垂直同步信号，显卡才会渲染下一帧，确保刷新率和帧率保持同步，以达到供需平衡的效果，防止卡顿现象。
         duration: const Duration(seconds: 1),
-        lowerBound: 3, //第三圈转到第五圈
-        upperBound: 5)
+        lowerBound: 0, //第三圈转到第五圈
+        upperBound: 0.2)
       ..repeat(reverse: true);
     _animationController.addListener(() {
       print(_animationController.value);

@@ -515,7 +515,7 @@ class animatedIcon extends StatefulWidget {
 
   @override
   State<animatedIcon> createState() => __animatedIconState();
-}ss
+}
 
 class __animatedIconState extends State<animatedIcon> {
   final GlobalKey _globalkey = GlobalKey();
